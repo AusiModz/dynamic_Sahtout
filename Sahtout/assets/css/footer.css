@@ -46,8 +46,8 @@ footer {
 }
 
 .kick-icon {
-    width: 30px;
-    height: 30px;
+    width: 20px;
+    height: 14px;
     filter: brightness(0) invert(1);
     transition: transform 0.3s ease, filter 0.3s ease;
 }
@@ -117,6 +117,7 @@ footer {
         height: 40px;
         font-size: 16px;
     }
+    
 }
 
 @media (max-width: 480px) {
@@ -130,8 +131,9 @@ footer {
     }
 
     .kick-icon {
-        width: 25px;
-        height: 25px;
+        width: 18px;
+        height: 14px;
+        margin-bottom: 6px;
     }
 
     #backToTop {
