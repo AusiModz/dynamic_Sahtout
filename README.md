@@ -101,8 +101,9 @@ MIT License — see [LICENSE](LICENSE) for details.
 
 ## Screenshots
 <img width="1914" height="936" alt="image" src="https://github.com/user-attachments/assets/ea53eddc-da0d-4f65-a2b1-80396d505c47" />
-<img width="569" height="851" alt="image" src="https://github.com/user-attachments/assets/8a16c3c2-f161-4369-b81c-a47732b7c18f" />
-<img width="1906" height="918" alt="image" src="https://github.com/user-attachments/assets/4595aeb0-354e-4f66-be46-ef2f86a00e12" />
+<img width="495" height="789" alt="image" src="https://github.com/user-attachments/assets/a14aba5e-3ca9-4872-bd2f-7dd4915f7910" />
+<img width="1886" height="895" alt="image" src="https://github.com/user-attachments/assets/8c0ceaa9-c67b-4c75-8216-9f5cb2d4acbd" />
+<img width="1882" height="869" alt="image" src="https://github.com/user-attachments/assets/c5aaae3c-3958-435d-b892-0912b0a7c389" />
 <img width="1886" height="934" alt="image" src="https://github.com/user-attachments/assets/d9b28534-2a37-4d62-a01d-29a767107569" />
 <img width="1917" height="946" alt="image" src="https://github.com/user-attachments/assets/1d5e5a02-0d0d-4042-8a10-ee3d31ef82d8" />
 <img width="1429" height="937" alt="image" src="https://github.com/user-attachments/assets/3bbbeb19-b268-4aee-9d62-b3071f47ca44" />
