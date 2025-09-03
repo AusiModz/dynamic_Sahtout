@@ -54,7 +54,7 @@ return [
     'linkedin_alt' => 'LinkedIn',
     
     // Realm status (from realm_status.php)
-    'error_direct_access' => 'Direct access to this file is not allowed.',
+   'error_direct_access' => 'Direct access to this file is not allowed.',
     'error_access_denied' => 'Access denied.',
     'server_status_title' => 'Server Status',
     'realm_sahtout_name' => 'Sahtout Realm',
@@ -62,14 +62,14 @@ return [
     'realm_logo_alt' => 'Realm Logo',
     'status_online' => '🟢 Online',
     'status_offline' => '🔴 Offline',
-    'players_online' => '👥 Players Online: %s',
+    'players_online' => '👥 Players Online: %d',
     'players_online_none' => '👥 Players Online: 0',
     'uptime' => '⏱️ Uptime: %s',
     'uptime_none' => '⏱️ Uptime: Unknown',
+    'uptime_format' => '%d %s, %d %s, %d %s',
     'uptime_days' => 'days',
     'uptime_hours' => 'hours',
     'uptime_minutes' => 'minutes',
-    'uptime_unknown' => 'Unknown',
     'realmlist' => '🌐 Realmlist: %s',
 ];
 ?>

@@ -196,7 +196,7 @@ CREATE TABLE IF NOT EXISTS `failed_logins` (
   KEY `idx_last_attempt` (`last_attempt`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf16;
 
--- Dumping data for table sahtout_site.failed_logins: ~1 rows (approximately)
+-- Dumping data for table sahtout_site.failed_logins: ~0 rows (approximately)
 
 -- Dumping structure for table sahtout_site.password_resets
 CREATE TABLE IF NOT EXISTS `password_resets` (
@@ -209,11 +209,11 @@ CREATE TABLE IF NOT EXISTS `password_resets` (
   PRIMARY KEY (`id`),
   KEY `idx_email` (`email`),
   KEY `idx_token` (`token`)
-) ENGINE=InnoDB AUTO_INCREMENT=123 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=126 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
--- Dumping data for table sahtout_site.password_resets: ~0 rows (approximately)
+-- Dumping data for table sahtout_site.password_resets: ~1 rows (approximately)
 INSERT INTO `password_resets` (`id`, `email`, `token`, `created_at`, `expires_at`, `used`) VALUES
-	(122, 'blodysahtout@gmail.com', 'bdedc8a0c5f04145a46e7b35e620c668a1203847860953d3ce090ed192095bcc', '2025-09-02 22:14:59', '2025-09-02 23:14:59', 0);
+	(125, 'blodysahtou1t@gmail.com', '9bb2c0c0e14e1898946d24a77725e7f34ffa1237f3342575819a70109647de8e', '2025-09-03 00:59:22', '2025-09-03 01:59:22', 0);
 
 -- Dumping structure for table sahtout_site.pending_accounts
 CREATE TABLE IF NOT EXISTS `pending_accounts` (
@@ -243,7 +243,7 @@ CREATE TABLE IF NOT EXISTS `profile_avatars` (
   UNIQUE KEY `uk_filename` (`filename`)
 ) ENGINE=InnoDB AUTO_INCREMENT=28 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Dumping data for table sahtout_site.profile_avatars: ~27 rows (approximately)
+-- Dumping data for table sahtout_site.profile_avatars: ~3 rows (approximately)
 INSERT INTO `profile_avatars` (`id`, `filename`, `display_name`, `active`, `created_at`) VALUES
 	(1, '1-0.png', 'Avatar 1', 1, '2025-07-27 14:35:31'),
 	(2, '1-1.png', 'Avatar 2', 1, '2025-07-27 14:35:31'),
@@ -288,7 +288,7 @@ CREATE TABLE IF NOT EXISTS `purchases` (
   CONSTRAINT `fk_item_id` FOREIGN KEY (`item_id`) REFERENCES `shop_items` (`item_id`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Dumping data for table sahtout_site.purchases: ~11 rows (approximately)
+-- Dumping data for table sahtout_site.purchases: ~0 rows (approximately)
 
 -- Dumping structure for table sahtout_site.reset_attempts
 CREATE TABLE IF NOT EXISTS `reset_attempts` (
@@ -301,11 +301,9 @@ CREATE TABLE IF NOT EXISTS `reset_attempts` (
   PRIMARY KEY (`id`),
   UNIQUE KEY `idx_email` (`email`),
   KEY `idx_ip_address` (`ip_address`)
-) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf16;
+) ENGINE=InnoDB DEFAULT CHARSET=utf16;
 
 -- Dumping data for table sahtout_site.reset_attempts: ~0 rows (approximately)
-INSERT INTO `reset_attempts` (`id`, `ip_address`, `email`, `attempts`, `last_attempt`, `blocked_until`) VALUES
-	(9, '::1', 'blodysahtout@gmail.com', 3, '2025-09-02 22:15:02', '2025-09-02 23:15:02');
 
 -- Dumping structure for table sahtout_site.server_news
 CREATE TABLE IF NOT EXISTS `server_news` (
@@ -322,7 +320,7 @@ CREATE TABLE IF NOT EXISTS `server_news` (
   UNIQUE KEY `slug_unique` (`slug`)
 ) ENGINE=InnoDB AUTO_INCREMENT=46 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
--- Dumping data for table sahtout_site.server_news: ~17 rows (approximately)
+-- Dumping data for table sahtout_site.server_news: ~19 rows (approximately)
 INSERT INTO `server_news` (`id`, `title`, `slug`, `content`, `posted_by`, `post_date`, `image_url`, `is_important`, `category`) VALUES
 	(1, 'Server Patch 3.3.5a Applied', 'server-patch-3.3.5a-applied', 'We have successfully updated the server to the latest patch version. All new content is now available! ok hello test after theis ldodldldlddlWe have successfully updated the server to the latest patch version. All new content is now available! ok hello test after theis ldodldldlddlWe have successfully updated the server to the latest patch version. All new content is now available! ok hello test after theis ldodldldlddlWe have successfully updated the server to the latest patch version. All new content is now available! ok hello test after theis ldodldldlddlWe have successfully updated the server to the latest patch version. All new content is now available! ok hello test after theis ldodldldlddlWe have successfully updated the server to the latest patch version. All new content is now available! ok hello test after theis ldodldldlddlWe have successfully updated the server to the latest patch version. All new content is now available! ok hello test after theis ldodldldlddlWe have successfully updated the server to the latest patch version. All new content is now available! ok hello test after theis ldodldldlddlWe have successfully updated the server to the latest patch version. All new content is now available! ok hello test after theis ldodldldlddlWe have successfully updated the server to the latest patch version. All new content is now available! ok hello test after theis ldodldldlddlWe have successfully updated the server to the latest patch version. All new content is now available! ok hello test after theis ldodldldlddlWe have successfully updated the server to the latest patch version. All new content is now available! ok hello test after theis ldodldldlddlWe have successfully updated the server to the latest patch version. All new content is now available! ok hello test after theis ldodldldlddlWe have successfully updated the server to the latest patch version. All new content is now available! ok hello test after theis ldodldldlddlWe have successfully updated the server to the latest patch version. All new content is now available! ok hello test after theis ldodldldlddlWe have successfully updated the server to the latest patch version. All new content is now available! ok hello test after theis ldodldldlddlWe have successfully updated the server to the latest patch version. All new content is now available! ok hello test after theis ldodldldlddlWe have successfully updated the server to the latest patch version. All new content is now available! ok hello test after theis ldodldldlddlWe have successfully updated the server to the latest patch version. All new content is now available! ok hello test after theis ldodldldlddlWe have successfully updated the server to the latest patch version. All new content is now available! ok hello test after theis ldodldldlddlWe have successfully updated the server to the latest patch version. All new content is now available! ok hello test after theis ldodldldlddlWe have successfully updated the server to the latest patch version. All new content is now available! ok hello test after theis ldodldldlddlWe have successfully updated the server to the latest patch version. All new content is now available! ok hello test after theis ldodldldlddlWe have successfully updated the server to the latest patch version. All new content is now available! ok hello test after theis ldodldldlddlWe have successfully updated the server to the latest patch version. All new content is now available! ok hello test after theis ldodldldlddlWe have successfully updated the server to the latest patch version. All new content is now available! ok hello test after theis ldodldldlddlWe have successfully updated the server to the latest patch version. All new content is now available! ok hello test after theis ldodldldlddlWe have successfully updated the server to the latest patch version. All new content is now available! ok hello test after theis ldodldldlddl', 'Admin', '2025-07-24 17:08:35', 'img/newsimg/news1.jpg', 1, 'update'),
 	(2, 'Weekly Arena TournamentEr', 'weekly-arena-tournament', 'Sign up now for this week\'s arena tournament! Prize: 1000 gold to winning team.', 'GameMaster', '2025-07-24 17:08:35', 'img/newsimg/news2.jpg', 1, 'event'),
@@ -342,7 +340,7 @@ INSERT INTO `server_news` (`id`, `title`, `slug`, `content`, `posted_by`, `post_
 	(36, 'fdsfs', 'fdsfsfsf', 'fdsfsf', 'TEST10', '2025-08-06 08:30:00', 'img/newsimg/news_68a09f705ddf8.png', 0, 'update'),
 	(40, 'aaaaa', 'aaaaa', 'azdzada', 'TEST10', '2025-08-07 00:00:10', 'img/newsimg/news.png', 0, 'update'),
 	(44, 'hello', 'yahala', 'marhbe bikom lkol', 'BLODY', '2025-08-26 23:05:27', 'img/newsimg/news.png', 1, 'maintenance'),
-	(45, 'flare', 'water', 'checkout this video on YOUTUBE:https://www.youtube.com/watch?v=wHZypMui6aQ\r\n🤖', 'BLODY', '2025-08-28 22:30:41', 'img/newsimg/news.png', 1, 'event');
+	(45, 'flare', 'water', 'checkout this video on YOUTUBE:https://www.youtube.com/watch?v=wHZypMui6aQ\r\nðŸ¤–', 'BLODY', '2025-08-28 22:30:41', 'img/newsimg/news.png', 1, 'event');
 
 -- Dumping structure for table sahtout_site.shop_items
 CREATE TABLE IF NOT EXISTS `shop_items` (
@@ -572,16 +570,7 @@ CREATE TABLE IF NOT EXISTS `user_currencies` (
   CONSTRAINT `user_currencies_ibfk_1` FOREIGN KEY (`account_id`) REFERENCES `acore_auth`.`account` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Dumping data for table sahtout_site.user_currencies: ~7 rows (approximately)
-INSERT INTO `user_currencies` (`account_id`, `username`, `email`, `avatar`, `points`, `tokens`, `role`, `last_updated`) VALUES
-	(22, 'BLODY', 'blodysahtou1t@gmail.com', '37-0.png', 98849, 99149, 'admin', '2025-08-28 21:09:27'),
-	(25, 'BLODY2', 'blodysahtout2@gmail.com', NULL, 0, 0, 'player', '2025-08-29 15:42:37'),
-	(26, 'BATA', 'aa@gmail.com', NULL, 0, 0, 'player', '2025-08-29 15:47:08'),
-	(29, 'MAR9A', 'blodysahtout3@gmail.com', NULL, 0, 0, 'player', '2025-08-30 19:14:51'),
-	(31, 'BLODY100', 'blodysahtout@gmail.com', NULL, 0, 0, 'player', '2025-08-30 20:50:19'),
-	(32, 'TESTER', 'test@gmail.com', NULL, 0, 0, 'player', '2025-08-30 21:40:24'),
-	(34, 'ADMIN', 'admin@admin.com', NULL, 0, 0, 'admin', '2025-08-30 22:38:20'),
-	(35, 'BLODY8', 'blodysahtoust@gmail.com', NULL, 0, 0, 'player', '2025-09-01 18:20:22');
+-- Dumping data for table sahtout_site.user_currencies: ~0 rows (approximately)
 
 -- Dumping structure for table sahtout_site.website_activity_log
 CREATE TABLE IF NOT EXISTS `website_activity_log` (
@@ -596,7 +585,7 @@ CREATE TABLE IF NOT EXISTS `website_activity_log` (
   CONSTRAINT `website_activity_log_ibfk_1` FOREIGN KEY (`account_id`) REFERENCES `acore_auth`.`account` (`id`) ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Dumping data for table sahtout_site.website_activity_log: ~23 rows (approximately)
+-- Dumping data for table sahtout_site.website_activity_log: ~0 rows (approximately)
 
 -- Dumping structure for trigger sahtout_site.before_site_items_insert
 SET @OLDTMP_SQL_MODE=@@SQL_MODE, SQL_MODE='ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION';

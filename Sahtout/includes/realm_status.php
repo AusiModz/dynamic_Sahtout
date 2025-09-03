@@ -1,23 +1,20 @@
 <?php
 if (!defined('ALLOWED_ACCESS')) {
     header('HTTP/1.1 403 Forbidden');
-    exit('Direct access to this file is not allowed.');
+    exit(translate('error_direct_access')); // Use translation for error message
 }
-
 if (basename($_SERVER['PHP_SELF']) == basename(__FILE__)) {
-    exit('Access denied.');
+    exit(translate('error_access_denied')); // Use translation for error message
 }
-
-require_once 'config.php';
 
 // Realm list configuration
 $realmlist = [
     [
         'id' => 1,
-        'name' => 'Sahtout',
+        'name' => translate('realm_sahtout_name'), // Translated realm name
         'address' => '127.0.0.1',
         'port' => 8085,
-        'logo' => 'img/logos/realm_logo.png'
+        'logo' => 'img/logos/realm1_logo.webp'
     ]
 ];
 
@@ -49,29 +46,34 @@ function getServerUptime(mysqli $auth_db, int $realmId = 1): string {
         $days = floor($uptimeSeconds / 86400);
         $hours = floor(($uptimeSeconds % 86400) / 3600);
         $minutes = floor(($uptimeSeconds % 3600) / 60);
-        return "$days days, $hours hours, $minutes minutes";
+        // Use translations for days, hours, minutes
+        return translate('uptime_format', '%d %s, %d %s, %d %s', 
+            $days, translate('uptime_days'), 
+            $hours, translate('uptime_hours'), 
+            $minutes, translate('uptime_minutes')
+        );
     }
-    return "Unknown";
+    return translate('uptime_none');
 }
 ?>
 
 <div class="server-status">
-    <h2>Server Status</h2>
+    <h2><?php echo translate('server_status_title'); ?></h2>
     <ul>
         <?php foreach ($realmlist as $realm): ?>
             <li>
-                <img src="<?php echo $realm['logo']; ?>" alt="Realm Logo" height="40"><br>
+                <img src="<?php echo $realm['logo']; ?>" alt="<?php echo translate('realm_logo_alt'); ?>" height="40"><br>
                 <strong><?php echo htmlspecialchars($realm['name']); ?>:</strong><br>
                 <?php if (isRealmOnline($realm['address'], $realm['port'])): ?>
-                    <span class="online">🟢 Online</span><br>
-                    <span class="players">👥 Players Online: <?php echo getOnlinePlayers($char_db); ?></span><br>
-                    <span class="uptime">⏱️ Uptime: <?php echo getServerUptime($auth_db, $realm['id']); ?></span><br>
+                    <span class="online"><?php echo translate('status_online'); ?></span><br>
+                    <span class="players"><?php echo translate('players_online', '👥 Players Online: %d', getOnlinePlayers($char_db)); ?></span><br>
+                    <span class="uptime"><?php echo translate('uptime', '⏱️ Uptime: %s', getServerUptime($auth_db, $realm['id'])); ?></span><br>
                 <?php else: ?>
-                    <span class="offline">🔴 Offline</span><br>
-                    <span class="players">👥 Players Online: 0</span><br>
-                    <span class="uptime">⏱️ Uptime: Unknown</span><br>
+                    <span class="offline"><?php echo translate('status_offline'); ?></span><br>
+                    <span class="players"><?php echo translate('players_online_none'); ?></span><br>
+                    <span class="uptime"><?php echo translate('uptime_none'); ?></span><br>
                 <?php endif; ?>
-                <span class="realm-ip">🌐 Realmlist: <?php echo htmlspecialchars($realm['address']); ?></span>
+                <span class="realm-ip"><?php echo translate('realmlist', '🌐 Realmlist: %s', htmlspecialchars($realm['address'])); ?></span>
             </li>
         <?php endforeach; ?>
     </ul>
