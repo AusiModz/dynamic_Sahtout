@@ -32,6 +32,26 @@ return [
     'admin_characters' => 'Character Management',
     'admin_shop' => 'Shop Management',
     'admin_gm_commands' => 'GM Commands',
+    'admin_settings' => 'Settings',
+    
+    // Settings navigation
+    'settings_nav_menu' => 'Settings Menu',
+    'settings_nav_general' => 'General',
+    'settings_nav_smtp' => 'SMTP',
+    'settings_nav_recaptcha' => 'reCAPTCHA',
+    'settings_nav_realm' => 'Realm',
+    'settings_nav_soap' => 'SOAP',
+    
+    // Social media alt text
+    'footer_logo_alt' => 'Sahtout Server Logo',
+    'facebook_alt' => 'Facebook',
+    'youtube_alt' => 'YouTube',
+    'discord_alt' => 'Discord',
+    'twitch_alt' => 'Twitch',
+    'kick_alt' => 'Kick',
+    'instagram_alt' => 'Instagram',
+    'github_alt' => 'GitHub',
+    'linkedin_alt' => 'LinkedIn',
     
     // Realm status (from realm_status.php)
     'error_direct_access' => 'Direct access to this file is not allowed.',

@@ -3,7 +3,7 @@ if (!defined('ALLOWED_ACCESS')) {
     header('HTTP/1.1 403 Forbidden');
     exit('Direct access to this file is not allowed.');
 }
-
+require_once __DIR__ . '/config.settings.php'; // load logo + socials
 // Include language detection
 require_once __DIR__ . '/../languages/language.php';
 
@@ -190,16 +190,15 @@ header nav.no-session {
 
 header nav a {
     text-decoration: none;
-    font-size: 1.2rem; /* slightly smaller */
-    font-weight: 600;
-    padding: 0.4rem 1rem; /* tighter padding */
-    border-radius: 6px;
+    font-size: 1rem; /* slightly smaller */
+    font-weight: 700;
+    padding: 0.4rem 0.8rem; /* tighter padding */
+    border-radius: 4px;
     background: linear-gradient(135deg, rgba(27, 155, 240, 0.85) 0%, rgba(25, 158, 185, 0.75) 58%);
     color: #ffffff;
     border: 1px solid #1b9bf0;
     transition: all 0.25s ease;
     position: relative;
-    margin-right: 15px;
     box-shadow: 0 2px 5px rgba(0,0,0,0.3);
 }
 
@@ -726,7 +725,7 @@ header nav a.active {
 </style>
 <body class="<?php echo $page_class; ?>">
     <header>
-        <a href="<?php echo $base_path; ?>"><img src="<?php echo $base_path; ?>img/logo.png" alt="Sahtout Server Logo" height="80"></a>
+        <a href="<?php echo $base_path; ?>"><img src="<?php echo $base_path; ?><?php echo $site_logo; ?>" alt="Sahtout Server Logo" height="80"></a>
         <button class="nav-toggle" aria-label="Toggle navigation">
             <span class="hamburger"></span>
         </button>

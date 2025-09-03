@@ -77,13 +77,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         }
         .d-flex { flex-wrap: wrap; }
 
-        /* Sidebar */
-        .sidebar {
-            width: 250px;
-            background: #f8f9fa;
-            min-height: 100vh;
-        }
-
         /* Main content */
         .main-content {
             flex: 1;
@@ -105,30 +98,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             margin: 0 auto;
         }
 
-        /* Sidebar links */
-        .admin-sidebar-nav .nav-link {
-            color: #333;
-            border-radius: 4px;
-            margin-bottom: 0.25rem;
-        }
-        .admin-sidebar-nav .nav-link:hover,
-        .admin-sidebar-nav .nav-link.active {
-            color: #fff;
-        }
-        .admin-sidebar-nav .nav-link.active {
-            background: #0d6efd;
-        }
-        .admin-sidebar-nav .nav-link.text-danger:hover {
-            background: #dc3545;
-            color: #fff !important;
-        }
-
         /* Responsive adjustments */
         @media (max-width: 768px) {
-            .sidebar {
-                width: 100%;
-                min-height: auto;
-            }
             .main-content {
                 padding: 10px;
             }

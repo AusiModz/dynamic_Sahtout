@@ -1,9 +1,9 @@
 <?php
 define('ALLOWED_ACCESS', true);
 require_once '../includes/session.php';
-require_once '../languages/language.php'; // Add for translate()
-require_once '../includes/config.cap.php'; // reCAPTCHA keys
-require_once '../includes/config.mail.php'; // PHPMailer configuration
+require_once '../languages/language.php';
+require_once '../includes/config.cap.php';
+require_once '../includes/config.mail.php';
 require_once 'C:/xampp/htdocs/Sahtout/includes/srp6.php';
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
@@ -20,16 +20,18 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $password = $_POST['password'] ?? '';
     $confirm_password = $_POST['confirm_password'] ?? '';
     $email = trim($_POST['email'] ?? '');
-    $recaptcha_response = $_POST['g-recaptcha-response'] ?? '';
 
-    // Verify reCAPTCHA
-    if (empty($recaptcha_response)) {
-        $errors[] = translate('error_recaptcha_empty', 'Please complete the CAPTCHA.');
-    } else {
-        $verify = file_get_contents('https://www.google.com/recaptcha/api/siteverify?secret=' . RECAPTCHA_SECRET_KEY . '&response=' . $recaptcha_response);
-        $captcha_result = json_decode($verify);
-        if (!$captcha_result->success) {
-            $errors[] = translate('error_recaptcha_failed', 'CAPTCHA verification failed.');
+    // Verify reCAPTCHA only if enabled
+    if (defined('RECAPTCHA_ENABLED') && RECAPTCHA_ENABLED) {
+        $recaptcha_response = $_POST['g-recaptcha-response'] ?? '';
+        if (empty($recaptcha_response)) {
+            $errors[] = translate('error_recaptcha_empty', 'Please complete the CAPTCHA.');
+        } else {
+            $verify = file_get_contents('https://www.google.com/recaptcha/api/siteverify?secret=' . RECAPTCHA_SECRET_KEY . '&response=' . $recaptcha_response);
+            $captcha_result = json_decode($verify);
+            if (!$captcha_result->success) {
+                $errors[] = translate('error_recaptcha_failed', 'CAPTCHA verification failed.');
+            }
         }
     }
 
@@ -54,13 +56,18 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if (empty($errors)) {
         $upper_username = strtoupper($username);
         $stmt = $site_db->prepare("SELECT username, email FROM pending_accounts WHERE username = ? OR email = ?");
-        $stmt->bind_param('ss', $upper_username, $email);
-        $stmt->execute();
-        $result = $stmt->get_result();
-        if ($result->num_rows > 0) {
-            $errors[] = translate('error_account_pending', 'An account with this username or email is already pending or registered. Please use a different username or email, or activate your existing account.');
+        if (!$stmt) {
+            error_log("Register: Pending accounts prepare failed: " . $site_db->error);
+            $errors[] = translate('error_database', 'Database error. Please try again later.');
+        } else {
+            $stmt->bind_param('ss', $upper_username, $email);
+            $stmt->execute();
+            $result = $stmt->get_result();
+            if ($result->num_rows > 0) {
+                $errors[] = translate('error_account_pending', 'An account with this username or email is already pending or registered. Please use a different username or email, or activate your existing account.');
+            }
+            $stmt->close();
         }
-        $stmt->close();
     }
 
     // Check for existing username and email in acore_auth.account
@@ -71,77 +78,110 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         // Check if username exists
         $stmt = $auth_db->prepare("SELECT id FROM account WHERE username = ?");
-        $stmt->bind_param('s', $upper_username);
-        $stmt->execute();
-        $result = $stmt->get_result();
-        if ($result->num_rows > 0) {
-            $errors[] = translate('error_username_exists', 'Username already exists. Please choose a different username.');
+        if (!$stmt) {
+            error_log("Register: Account username prepare failed: " . $auth_db->error);
+            $errors[] = translate('error_database', 'Database error. Please try again later.');
+        } else {
+            $stmt->bind_param('s', $upper_username);
+            $stmt->execute();
+            $result = $stmt->get_result();
+            if ($result->num_rows > 0) {
+                $errors[] = translate('error_username_exists', 'Username already exists. Please choose a different username.');
+            }
+            $stmt->close();
         }
-        $stmt->close();
 
         // Check if email exists
         $stmt = $auth_db->prepare("SELECT id FROM account WHERE email = ?");
-        $stmt->bind_param('s', $email);
-        $stmt->execute();
-        $result = $stmt->get_result();
-        if ($result->num_rows > 0) {
-            $errors[] = translate('error_email_exists', 'Email already in use. Please choose a different email.');
+        if (!$stmt) {
+            error_log("Register: Account email prepare failed: " . $auth_db->error);
+            $errors[] = translate('error_database', 'Database error. Please try again later.');
+        } else {
+            $stmt->bind_param('s', $email);
+            $stmt->execute();
+            $result = $stmt->get_result();
+            if ($result->num_rows > 0) {
+                $errors[] = translate('error_email_exists', 'Email already in use. Please choose a different email.');
+            }
+            $stmt->close();
         }
-        $stmt->close();
     }
 
-    // Proceed with pending account creation and email sending
+    // Proceed with account creation based on SMTP_ENABLED
     if (empty($errors)) {
         $salt = SRP6::GenerateSalt();
         $verifier = SRP6::CalculateVerifier($username, $password, $salt);
-        $token = bin2hex(random_bytes(32)); // Activation token
+        $account = [
+            'username' => $username,
+            'salt' => $salt,
+            'verifier' => $verifier,
+            'email' => $email
+        ];
 
-        // Insert into sahtout_site.pending_accounts
-        $stmt = null; // Initialize the variable
-        try {
-            $stmt = $site_db->prepare("INSERT INTO pending_accounts (username, email, salt, verifier, token) VALUES (?, ?, ?, ?, ?)");
-            $stmt->bind_param("sssss", $upper_username, $email, $salt, $verifier, $token);
+        if (defined('SMTP_ENABLED') && SMTP_ENABLED) {
+            // SMTP enabled: Store in pending_accounts and send activation email
+            $token = bin2hex(random_bytes(32)); // Activation token
+            $stmt = null;
+            try {
+                $stmt = $site_db->prepare("INSERT INTO pending_accounts (username, email, salt, verifier, token) VALUES (?, ?, ?, ?, ?)");
+                if (!$stmt) {
+                    error_log("Register: Insert pending account prepare failed: " . $site_db->error);
+                    $errors[] = translate('error_database', 'Database error. Please try again later.');
+                } else {
+                    $stmt->bind_param("sssss", $upper_username, $email, $salt, $verifier, $token);
+                    if ($stmt->execute()) {
+                        // Detect protocol and host dynamically
+                        $protocol = (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off') ? "https://" : "http://";
+                        $host = $_SERVER['HTTP_HOST'];
+                        $activation_link = $protocol . $host . "/sahtout/activate?token=$token";
 
-            if ($stmt->execute()) {
-                // Detect protocol dynamically
-                $protocol = (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off') ? "https://" : "http://";
+                        // Send activation email
+                        try {
+                            $mail = getMailer();
+                            $mail->addAddress($email, $username);
+                            $mail->AddEmbeddedImage('logo.png', 'logo_cid');
+                            $mail->Subject = translate('email_subject', 'Activate Your Account');
+                            $mail->Body = "
+                                <h2>" . str_replace('{username}', htmlspecialchars($username), translate('email_greeting', 'Welcome, {username}!')) . "</h2>
+                                <img src='cid:logo_cid' alt='Sahtout logo'>
+                                <p>" . translate('email_body', 'Thank you for registering. Please click the button below to activate your account:') . "</p>
+                                <p><a href='$activation_link' style='background-color:#6e4d15;color:white;padding:10px 20px;text-decoration:none;'>" . translate('email_activate_button', 'Activate Account') . "</a></p>
+                                <p>" . translate('email_ignore', 'If you did not register, please ignore this email.') . "</p>
+                            ";
 
-                // Get host dynamically from $_SERVER
-                $host = $_SERVER['HTTP_HOST'];
-
-                // Build activation link
-                $activation_link = $protocol . $host . "/sahtout/activate?token=$token";
-
-                // Send activation email
-                try {
-                    $mail = getMailer();
-                    $mail->addAddress($email, $username);
-                    $mail->AddEmbeddedImage('logo.png', 'logo_cid');
-                    $mail->Subject = translate('email_subject', 'Activate Your Account');
-                    $mail->Body = "
-                        <h2>" . str_replace('{username}', htmlspecialchars($username), translate('email_greeting', 'Welcome, {username}!')) . "</h2>
-                        <img src='cid:logo_cid' alt='Sahtout logo'>
-                        <p>" . translate('email_body', 'Thank you for registering. Please click the button below to activate your account:') . "</p>
-                        <p><a href='$activation_link' style='background-color:#6e4d15;color:white;padding:10px 20px;text-decoration:none;'>" . translate('email_activate_button', 'Activate Account') . "</a></p>
-                        <p>" . translate('email_ignore', 'If you did not register, please ignore this email.') . "</p>
-                    ";
-
-                    if ($mail->send()) {
-                        $success = "Account created. Check your email to activate your account.";
+                            if ($mail->send()) {
+                                $success = translate('success_account_created', 'Account created. Check your email to activate your account.');
+                            } else {
+                                $errors[] = translate('error_email_failed', 'Failed to send activation email. Please contact support.');
+                            }
+                        } catch (Exception $e) {
+                            $errors[] = translate('error_email_failed', 'Failed to send activation email: ') . $mail->ErrorInfo;
+                        }
                     } else {
-                        $errors[] = translate('error_email_failed', 'Failed to send activation email. Please contact support.');
+                        $errors[] = translate('error_registration_failed', 'Failed to store pending account.');
                     }
-                } catch (Exception $e) {
-                    $errors[] = translate('error_email_failed', 'Failed to send activation email: ') . $mail->ErrorInfo;
                 }
-            } else {
-                $errors[] = translate('error_registration_failed', 'Failed to store pending account.');
+            } catch (mysqli_sql_exception $e) {
+                $errors[] = translate('error_account_pending', 'An account with this username or email is already pending or registered. Please use a different username or email, or activate your existing account.');
+            } finally {
+                if ($stmt instanceof mysqli_stmt) {
+                    $stmt->close();
+                }
             }
-        } catch (mysqli_sql_exception $e) {
-            $errors[] = translate('error_account_pending', 'An account with this username or email is already pending or registered. Please use a different username or email, or activate your existing account.');
-        } finally {
-            if ($stmt instanceof mysqli_stmt) {
-                $stmt->close();
+        } else {
+            // SMTP disabled: Directly create account in acore_auth.account
+            $upper_username = strtoupper($account['username']);
+            $stmt_insert = $auth_db->prepare("INSERT INTO account (username, salt, verifier, email, reg_mail, expansion) VALUES (?, ?, ?, ?, ?, 2)");
+            if (!$stmt_insert) {
+                $errors[] = translate('error_database', 'Database query error: ') . $auth_db->error;
+            } else {
+                $stmt_insert->bind_param('sssss', $upper_username, $account['salt'], $account['verifier'], $account['email'], $account['email']);
+                if ($stmt_insert->execute()) {
+                    $success = translate('success_account_created_no_email', 'Account created successfully! You can now log in.');
+                } else {
+                    $errors[] = translate('error_registration_failed', 'Failed to create account.');
+                }
+                $stmt_insert->close();
             }
         }
     }
@@ -160,7 +200,7 @@ require_once '../includes/header.php';
     <title><?php echo translate('page_title', 'Create Account'); ?></title>
     <style>
         * {
-            box-sizing: border-box; /* Prevent padding/margins from causing overflow */
+            box-sizing: border-box;
         }
 
         html, body {
@@ -183,8 +223,8 @@ require_once '../includes/header.php';
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(0, 0, 0, 0.5); /* Dark overlay with blur */
-            backdrop-filter: blur(5px); /* Subtle blur effect */
+            background: rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(5px);
             z-index: 1;
         }
 
@@ -202,8 +242,8 @@ require_once '../includes/header.php';
         .register-container {
             max-width: 480px;
             width: calc(100% - 2rem);
-            background: #1a1a1a7c; /* Darker WoW-style background */
-            border: 3px solid #f1c40f; /* Vibrant gold border */
+            background: #1a1a1a7c;
+            border: 3px solid #f1c40f;
             border-radius: 12px;
             box-shadow: 0 8px 24px rgba(241, 196, 15, 0.4), 0 0 40px rgba(0, 0, 0, 0.8);
             padding: 2rem;
@@ -212,7 +252,7 @@ require_once '../includes/header.php';
         }
 
         .register-container:hover {
-            transform: translateY(-5px) rotate(1deg); /* Subtle 3D hover effect */
+            transform: translateY(-5px) rotate(1deg);
         }
 
         @keyframes pulse {
@@ -239,7 +279,7 @@ require_once '../includes/header.php';
         .register-form form {
             display: flex;
             flex-direction: column;
-            gap: 2rem; /* Increased from 1.2rem for more vertical space */
+            gap: 2rem;
         }
 
         .register-form input {
@@ -253,7 +293,7 @@ require_once '../includes/header.php';
             border-radius: 6px;
             outline: none;
             transition: border-color 0.3s ease, box-shadow 0.3s ease;
-            margin-bottom: 0.7rem; /* Add margin for extra spacing */
+            margin-bottom: 0.7rem;
         }
 
         .register-form input:focus {
@@ -267,13 +307,13 @@ require_once '../includes/header.php';
         }
 
         .g-recaptcha {
-            margin: 1.2rem auto 0.5rem; /* Add margin-bottom for spacing below reCAPTCHA */
+            margin: 1.2rem auto 0.5rem;
             display: flex;
             justify-content: center;
         }
 
         .register-button {
-            background: linear-gradient(135deg, #e74c3c 0%, #c0392b 100%); /* Fiery orange-red gradient */
+            background: linear-gradient(135deg, #e74c3c 0%, #c0392b 100%);
             color: #fff;
             border: 2px solid #f1c40f;
             padding: 0.9rem 1.8rem;
@@ -348,7 +388,7 @@ require_once '../includes/header.php';
             }
 
             .register-container:hover {
-                transform: translateY(-3px) rotate(0.5deg); /* Reduced for mobile */
+                transform: translateY(-3px) rotate(0.5deg);
             }
 
             .register-title {
@@ -433,7 +473,9 @@ require_once '../includes/header.php';
                 <input type="email" name="email" placeholder="<?php echo translate('email_placeholder', 'Email'); ?>" required minlength="3" maxlength="36">
                 <input type="password" name="password" placeholder="<?php echo translate('password_placeholder', 'Password'); ?>" required minlength="6" maxlength="32">
                 <input type="password" name="confirm_password" placeholder="<?php echo translate('password_confirm_placeholder', 'Confirm Password'); ?>" required minlength="6" maxlength="32">
-                <div class="g-recaptcha" data-sitekey="<?php echo RECAPTCHA_SITE_KEY; ?>"></div>
+                <?php if (defined('RECAPTCHA_ENABLED') && RECAPTCHA_ENABLED): ?>
+                    <div class="g-recaptcha" data-sitekey="<?php echo RECAPTCHA_SITE_KEY; ?>"></div>
+                <?php endif; ?>
                 <button type="submit" class="register-button"><?php echo translate('register_button', 'Register'); ?></button>
             </form>
 
@@ -441,7 +483,9 @@ require_once '../includes/header.php';
         </section>
     </main>
 
+    <?php if (defined('RECAPTCHA_ENABLED') && RECAPTCHA_ENABLED): ?>
+        <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+    <?php endif; ?>
     <?php include_once '../includes/footer.php'; ?>
-    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
 </body>
 </html>

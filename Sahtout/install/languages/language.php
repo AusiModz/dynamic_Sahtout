@@ -65,10 +65,14 @@ if (file_exists($pageFile) && is_readable($pageFile)) {
 }
 
 // === 6. Translation function ===
-function translate($key, $default = null) {
+
+
+function translate($key, $default = '', ...$args) {
     global $lang;
-    // If no default, use key or fallback message
-    $fallback = $default ?? $key; // You can replace with "[[$key]]" for debugging
-    return $lang[$key] ?? $fallback;
+    $string = $lang[$key] ?? $default;
+    if (!empty($args)) {
+        return vsprintf($string, $args); // Replace %d with provided arguments
+    }
+    return $string;
 }
 ?>

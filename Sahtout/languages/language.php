@@ -11,7 +11,7 @@ if (session_status() !== PHP_SESSION_ACTIVE) {
 
 // Define supported languages and default
 $defaultLang = 'en';
-$supported = ['en', 'fr', 'es','de','ru'];
+$supported = ['en', 'fr', 'es', 'de', 'ru'];
 
 // Set language
 if (isset($_GET['lang']) && in_array($_GET['lang'], $supported)) {
@@ -43,8 +43,12 @@ if (file_exists($pageLangFile) && is_readable($pageLangFile)) {
 }
 
 // Translation function
-function translate($key, $default = '') {
+function translate($key, $default = '', ...$args) {
     global $lang;
-    return $lang[$key] ?? $default;
+    $string = $lang[$key] ?? $default;
+    if (!empty($args)) {
+        return vsprintf($string, $args); // Replace %d with provided arguments
+    }
+    return $string;
 }
 ?>

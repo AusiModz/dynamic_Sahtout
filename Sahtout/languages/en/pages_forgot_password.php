@@ -15,6 +15,10 @@ return [
     'error_username_or_email_required' => 'Username or email is required',
     'error_recaptcha_failed' => 'reCAPTCHA verification failed.',
     'error_token_store_failed' => 'Failed to store reset token.',
-    'error_email_failed' => 'Failed to send email: '
+    'error_email_failed' => 'Failed to send email: ',
+    'error_database' => 'Database error occurred. Please try again.',
+    'error_reset_limit_exceeded' => 'You have reached the maximum number of password reset attempts. Please try again later.',
+    'success_no_email' => 'A reset password token has been created. Contact the admin to provide you the link to change your password.',
+    'success_email_sent' => 'If the provided username or email exists, a password reset link has been sent.'
 ];
 ?>

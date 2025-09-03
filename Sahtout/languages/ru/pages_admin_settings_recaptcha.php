@@ -1,0 +1,25 @@
+<?php
+return [
+    'page_title_recaptcha' => 'Настройки reCAPTCHA',
+    'settings_recaptcha' => 'Настройки reCAPTCHA',
+    'msg_recaptcha_enabled' => 'reCAPTCHA в настоящее время включен.',
+    'msg_recaptcha_disabled' => 'reCAPTCHA в настоящее время отключен.',
+    'err_fix_errors' => 'Пожалуйста, исправьте следующие ошибки:',
+    'msg_recaptcha_saved' => 'Настройки reCAPTCHA успешно сохранены!',
+    'label_captcha_type' => 'Тип CAPTCHA',
+    'option_recaptcha' => 'reCAPTCHA',
+    'option_hcaptcha' => 'hCaptcha (Скоро будет)',
+    'option_other' => 'Другое (Скоро будет)',
+    'label_recaptcha_enabled' => 'Включить reCAPTCHA',
+    'label_recaptcha_site_key' => 'Ключ сайта',
+    'label_recaptcha_secret_key' => 'Секретный ключ',
+    'placeholder_recaptcha_default' => 'Оставьте пустым для использования ключей по умолчанию',
+    'note_recaptcha_empty' => 'Оставьте поля reCAPTCHA пустыми, чтобы использовать ключи по умолчанию при включении',
+    'btn_save_recaptcha' => 'Сохранить настройки reCAPTCHA',
+    'error_direct_access' => 'Прямой доступ запрещен.',
+    'err_invalid_captcha_type' => 'Выбран недопустимый тип CAPTCHA. Поддерживается только reCAPTCHA.',
+    'err_recaptcha_keys_required' => 'Ключ сайта и секретный ключ reCAPTCHA требуются, когда reCAPTCHA включен.',
+    'err_cap_dir_not_writable' => 'Каталог конфигурации reCAPTCHA недоступен для записи: %s',
+    'err_failed_write_cap' => 'Не удалось записать файл конфигурации reCAPTCHA: %s',
+];
+?>

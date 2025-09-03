@@ -6,6 +6,10 @@ require_once '../includes/config.cap.php'; // reCAPTCHA keys
 require_once '../languages/language.php'; // Add for translate()
 $page_class = 'resend_activation'; // Underscore for URL consistency
 require_once '../includes/header.php';
+if (isset($_SESSION['user_id'])) {
+    header("Location: /sahtout/account");
+    exit();
+}
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
 
@@ -24,11 +28,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     elseif (!filter_var($test_email, FILTER_VALIDATE_EMAIL)) $errors[] = translate('error_email_invalid', 'Invalid email address');
 
     // Google reCAPTCHA validation
-    $recaptchaResponse = $_POST['g-recaptcha-response'] ?? '';
-    $verify = file_get_contents('https://www.google.com/recaptcha/api/siteverify?secret=' . RECAPTCHA_SECRET_KEY . '&response=' . $recaptchaResponse);
-    $responseData = json_decode($verify);
-    if (!$responseData->success) {
-        $errors[] = translate('error_recaptcha_failed', 'reCAPTCHA verification failed.');
+    if (defined('RECAPTCHA_ENABLED') && RECAPTCHA_ENABLED) {
+        $recaptchaResponse = $_POST['g-recaptcha-response'] ?? '';
+        $verify = file_get_contents('https://www.google.com/recaptcha/api/siteverify?secret=' . RECAPTCHA_SECRET_KEY . '&response=' . $recaptchaResponse);
+        $responseData = json_decode($verify);
+        if (!$responseData->success) {
+            $errors[] = translate('error_recaptcha_failed', 'reCAPTCHA verification failed.');
+        }
     }
 
     if (empty($errors)) {
@@ -165,7 +171,7 @@ function sendActivationEmail($username, $email, $token) {
         }
         .form-section input:focus {
             border-color: #ffe600;
-            box-shadow: 0 0 5px rgba(255, 230, 0, 0.5);
+            box-shadow: 0 0 5px rgba(255, 215, 0, 0.5);
         }
         .form-section input::placeholder {
             color: #ccc;
@@ -273,7 +279,9 @@ function sendActivationEmail($username, $email, $token) {
                 <form method="POST">
                     <input type="text" name="username" placeholder="<?php echo translate('username_placeholder', 'Username'); ?>" required value="<?php echo htmlspecialchars($test_username); ?>">
                     <input type="email" name="email" placeholder="<?php echo translate('email_placeholder', 'Email'); ?>" required value="<?php echo htmlspecialchars($test_email); ?>">
-                    <div class="g-recaptcha" data-sitekey="<?php echo RECAPTCHA_SITE_KEY; ?>"></div>
+                    <?php if (defined('RECAPTCHA_ENABLED') && RECAPTCHA_ENABLED): ?>
+                        <div class="g-recaptcha" data-sitekey="<?php echo RECAPTCHA_SITE_KEY; ?>"></div>
+                    <?php endif; ?>
                     <button type="submit"><?php echo translate('resend_button', 'Resend Activation Email'); ?></button>
                     <div class="login-link">
                         <?php echo translate('login_link', 'Already activated?'); ?> <a href="/sahtout/login"><?php echo translate('login_link_text', 'Log in here'); ?></a>
@@ -282,7 +290,9 @@ function sendActivationEmail($username, $email, $token) {
             </div>
         </div>
     </div>
+    <?php if (defined('RECAPTCHA_ENABLED') && RECAPTCHA_ENABLED): ?>
+        <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+    <?php endif; ?>
     <?php include_once '../includes/footer.php'; ?>
-    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
 </body>
 </html>

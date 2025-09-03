@@ -1,0 +1,25 @@
+<?php
+return [
+    'page_title_recaptcha' => 'reCAPTCHA-Einstellungen',
+    'settings_recaptcha' => 'reCAPTCHA-Einstellungen',
+    'msg_recaptcha_enabled' => 'reCAPTCHA ist derzeit aktiviert.',
+    'msg_recaptcha_disabled' => 'reCAPTCHA ist derzeit deaktiviert.',
+    'err_fix_errors' => 'Bitte beheben Sie die folgenden Fehler:',
+    'msg_recaptcha_saved' => 'reCAPTCHA-Einstellungen erfolgreich gespeichert!',
+    'label_captcha_type' => 'CAPTCHA-Typ',
+    'option_recaptcha' => 'reCAPTCHA',
+    'option_hcaptcha' => 'hCaptcha (Demnächst verfügbar)',
+    'option_other' => 'Andere (Demnächst verfügbar)',
+    'label_recaptcha_enabled' => 'reCAPTCHA aktivieren',
+    'label_recaptcha_site_key' => 'Site-Schlüssel',
+    'label_recaptcha_secret_key' => 'Geheimer Schlüssel',
+    'placeholder_recaptcha_default' => 'Leer lassen für Standard-Schlüssel',
+    'note_recaptcha_empty' => 'Lassen Sie die reCAPTCHA-Felder leer, um Standard-Schlüssel zu verwenden, wenn aktiviert',
+    'btn_save_recaptcha' => 'reCAPTCHA-Einstellungen speichern',
+    'error_direct_access' => 'Direkter Zugriff nicht erlaubt.',
+    'err_invalid_captcha_type' => 'Ungültiger CAPTCHA-Typ ausgewählt. Nur reCAPTCHA wird unterstützt.',
+    'err_recaptcha_keys_required' => 'Site-Schlüssel und geheimer Schlüssel von reCAPTCHA sind erforderlich, wenn reCAPTCHA aktiviert ist.',
+    'err_cap_dir_not_writable' => 'Das Konfigurationsverzeichnis von reCAPTCHA ist nicht beschreibbar: %s',
+    'err_failed_write_cap' => 'Fehler beim Schreiben der reCAPTCHA-Konfigurationsdatei: %s',
+];
+?>

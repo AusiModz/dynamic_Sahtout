@@ -1,0 +1,27 @@
+<?php
+return [
+    'page_title_realm' => 'Конфигурация реалма',
+    'section_realm_config' => 'Конфигурация реалма',
+    'err_fix_errors' => 'Пожалуйста, исправьте следующие ошибки:',
+    'msg_realm_saved' => 'Конфигурация реалма успешно сохранена!',
+    'label_realm_name' => 'Название реалма',
+    'label_realm_ip' => 'IP / Хост реалма',
+    'label_realm_port' => 'Порт реалма',
+    'label_realm_logo' => 'Логотип реалма',
+    'placeholder_realm_name' => 'Введите название реалма',
+    'placeholder_realm_logo' => 'Загрузите изображение PNG, SVG, JPG или WebP (макс. 2 МБ) для логотипа реалма.',
+    'btn_choose_file' => 'Выбрать файл',
+    'btn_save_realm' => 'Сохранить конфигурацию реалма',
+    'note_realm_config' => 'Примечание: Это настраивает параметры для одного реалма.',
+    'err_realm_name_required' => 'Название реалма обязательно.',
+    'err_realm_ip_required' => 'IP реалма обязателен.',
+    'err_realm_port_invalid' => 'Порт реалма должен быть действительным числом (1-65535).',
+    'err_read_realm_config' => 'Не удалось прочитать файл конфигурации реалма: %s',
+    'err_update_realm_config' => 'Ошибка при обновлении конфигурации реалма: $realmlist не найден или недействителен.',
+    'err_config_dir_not_writable' => 'Каталог конфигурации не доступен для записи: %s',
+    'err_write_realm_config' => 'Не удалось записать файл конфигурации реалма: %s',
+    'error_realm_logo_too_large' => 'Размер логотипа реалма превышает 2 МБ.',
+    'error_invalid_realm_logo_type' => 'Недопустимый тип файла. Разрешены только PNG, SVG, JPG или WebP.',
+    'error_realm_logo_upload_failed' => 'Не удалось загрузить логотип реалма. Проверьте права доступа на сервере.',
+];
+?>

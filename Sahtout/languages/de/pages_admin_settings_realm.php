@@ -1,0 +1,27 @@
+<?php
+return [
+    'page_title_realm' => 'Realm-Konfiguration',
+    'section_realm_config' => 'Realm-Konfiguration',
+    'err_fix_errors' => 'Bitte beheben Sie die folgenden Fehler:',
+    'msg_realm_saved' => 'Realm-Konfiguration erfolgreich gespeichert!',
+    'label_realm_name' => 'Realm-Name',
+    'label_realm_ip' => 'Realm-IP / Host',
+    'label_realm_port' => 'Realm-Port',
+    'label_realm_logo' => 'Realm-Logo',
+    'placeholder_realm_name' => 'Geben Sie den Realm-Namen ein',
+    'placeholder_realm_logo' => 'Laden Sie ein PNG-, SVG-, JPG- oder WebP-Bild (max. 2 MB) für das Realm-Logo hoch.',
+    'btn_choose_file' => 'Datei auswählen',
+    'btn_save_realm' => 'Realm-Konfiguration speichern',
+    'note_realm_config' => 'Hinweis: Dies konfiguriert die Einstellungen für einen einzelnen Realm.',
+    'err_realm_name_required' => 'Der Realm-Name ist erforderlich.',
+    'err_realm_ip_required' => 'Die Realm-IP ist erforderlich.',
+    'err_realm_port_invalid' => 'Der Realm-Port muss eine gültige Zahl sein (1-65535).',
+    'err_read_realm_config' => 'Kann die Realm-Konfigurationsdatei nicht lesen: %s',
+    'err_update_realm_config' => 'Fehler beim Aktualisieren der Realm-Konfiguration: $realmlist nicht gefunden oder ungültig.',
+    'err_config_dir_not_writable' => 'Das Konfigurationsverzeichnis ist nicht beschreibbar: %s',
+    'err_write_realm_config' => 'Die Realm-Konfigurationsdatei kann nicht geschrieben werden: %s',
+    'error_realm_logo_too_large' => 'Die Größe des Realm-Logos überschreitet 2 MB.',
+    'error_invalid_realm_logo_type' => 'Ungültiger Dateityp. Nur PNG, SVG, JPG oder WebP erlaubt.',
+    'error_realm_logo_upload_failed' => 'Fehler beim Hochladen des Realm-Logos. Überprüfen Sie die Serverberechtigungen.',
+];
+?>

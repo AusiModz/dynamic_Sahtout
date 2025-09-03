@@ -1,0 +1,27 @@
+<?php
+return [
+    'page_title_realm' => 'Configuración del Reino',
+    'section_realm_config' => 'Configuración del Reino',
+    'err_fix_errors' => 'Por favor, corrige los siguientes errores:',
+    'msg_realm_saved' => '¡Configuración del reino guardada exitosamente!',
+    'label_realm_name' => 'Nombre del Reino',
+    'label_realm_ip' => 'IP / Host del Reino',
+    'label_realm_port' => 'Puerto del Reino',
+    'label_realm_logo' => 'Logo del Reino',
+    'placeholder_realm_name' => 'Introduce el nombre del reino',
+    'placeholder_realm_logo' => 'Sube una imagen PNG, SVG, JPG o WebP (máx. 2 MB) para el logo del reino.',
+    'btn_choose_file' => 'Elegir archivo',
+    'btn_save_realm' => 'Guardar Configuración del Reino',
+    'note_realm_config' => 'Nota: Esto configura los ajustes para un solo reino.',
+    'err_realm_name_required' => 'El nombre del reino es obligatorio.',
+    'err_realm_ip_required' => 'La IP del reino es obligatoria.',
+    'err_realm_port_invalid' => 'El puerto del reino debe ser un número válido (1-65535).',
+    'err_read_realm_config' => 'No se pudo leer el archivo de configuración del reino: %s',
+    'err_update_realm_config' => 'Error al actualizar la configuración del reino: $realmlist no encontrado o inválido.',
+    'err_config_dir_not_writable' => 'El directorio de configuración no es escribible: %s',
+    'err_write_realm_config' => 'No se puede escribir el archivo de configuración del reino: %s',
+    'error_realm_logo_too_large' => 'El tamaño del logo del reino excede 2 MB.',
+    'error_invalid_realm_logo_type' => 'Tipo de archivo inválido. Solo se permiten PNG, SVG, JPG o WebP.',
+    'error_realm_logo_upload_failed' => 'Error al subir el logo del reino. Verifica los permisos del servidor.',
+];
+?>

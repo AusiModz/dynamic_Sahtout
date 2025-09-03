@@ -2,9 +2,10 @@
 define('ALLOWED_ACCESS', true);
 require_once 'includes/session.php';
 require_once 'languages/language.php'; // Include language file for translations
+require_once 'includes/config.settings.php'; // Load socials
 $page_class = "home";
-
 $header_file = "includes/header.php";
+
 // Ensure header file exists before including
 if (file_exists($header_file)) {
     include $header_file;
@@ -12,10 +13,10 @@ if (file_exists($header_file)) {
     die(translate('error_header_not_found', 'Error: Header file not found.'));
 }
 
-// Include database configuration
+// Include database configuration (assumed to be set in session.php or elsewhere)
+$base_url = '/sahtout/';
 
 // Query to fetch the 4 most recent news items
-$base_url = '/sahtout/';
 $query = "SELECT id, title, slug, image_url, post_date 
           FROM server_news 
           ORDER BY is_important DESC, post_date DESC 
@@ -61,10 +62,6 @@ $result = $site_db->query($query);
             position: fixed;
             top: 145px;
             left: 5px;
-            background: rgba(0, 0, 0, 0.7);
-            border: 2px solid #ffd700;
-            border-radius: 10px;
-            box-shadow: 0 0 15px rgba(255, 215, 0, 0.5);
             z-index: 1000;
             overflow: hidden;
         }
@@ -77,8 +74,10 @@ $result = $site_db->query($query);
             text-align: center;
             color: #5865F2;
             font-family: 'UnifrakturCook', cursive;
+            background-color: #1a1e2a;
             margin: 10px 0;
-            font-size: 1.5rem;
+            font-size: 1.2rem;
+            border-radius: 10% 10% 0 0;
         }
 
         /* Intro Container */
@@ -395,7 +394,7 @@ $result = $site_db->query($query);
         /* Server Status */
         .server-status {
             position: fixed;
-            top: 125px;
+            top: 165px;
             right: 15px;
             width: 300px;
             background: #0a0e14;
@@ -667,15 +666,15 @@ $result = $site_db->query($query);
             </div>
             <div class="social-container">
                 <hr class="social-line">
-                <a href="https://www.youtube.com/@Blodyone" class="youtube-button">
+                <a href="<?php echo $social_links['youtube']; ?>" class="youtube-button" aria-label="<?php echo translate('youtube_alt', 'YouTube'); ?>">
                     <img src="/sahtout/img/homeimg/youtube-logo1.png" alt="<?php echo translate('youtube_alt', 'YouTube'); ?>" class="youtube-logo">
                 </a>
                 <hr class="social-line">
-                <a href="https://discord.gg/chxXTXXQ6M" class="discord-button">
+                <a href="<?php echo $social_links['discord']; ?>" class="discord-button" aria-label="<?php echo translate('discord_alt', 'Discord'); ?>">
                     <img src="/sahtout/img/homeimg/discordlogo.png" alt="<?php echo translate('discord_alt', 'Discord'); ?>" class="discord-logo">
                 </a>
                 <hr class="social-line">
-                <a href="https://instagram.com/your-profile" class="instagram-button">
+                <a href="<?php echo $social_links['instagram']; ?>" class="instagram-button" aria-label="<?php echo translate('instagram_alt', 'Instagram'); ?>">
                     <img src="/sahtout/img/homeimg/insta-logo.png" alt="<?php echo translate('instagram_alt', 'Instagram'); ?>" class="instagram-logo">
                 </a>
                 <hr class="social-line">
@@ -753,6 +752,6 @@ $result = $site_db->query($query);
         die(translate('error_footer_not_found', 'Error: Footer file not found.'));
     }
     ?>
-    <script src="assets/js/home.js"></script>
+    <script src="/sahtout/assets/js/home.js"></script>
 </body>
 </html>
