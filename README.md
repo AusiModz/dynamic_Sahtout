@@ -18,7 +18,10 @@ SahtoutCMS is a World of Warcraft website for AzerothCore WOLTK 3.3.5 (with SRP6
 Watch on YouTube: [SahtoutCMS Demo](https://www.youtube.com/watch?v=wHZypMui6aQ )  
 
 ## 🔄 Latest Updates
-
+- 🛡️ Added **failed_logins** and **reset_attempts** tables for security tracking
+- ⚙️ New **Admin Settings** panel for site management (logo,social media links,SMTP,RECAPTCHA..)
+- ✨ Installer & Admin now support **reCAPTCHA** and **SMTP options** (enable/disable)
+- 🔒 Implemented **brute-force protection** for login, forgot password, and reset password
 - 🌍 Multilingual support for all static pages (including the installer)  
 - ✨ Updated styles for Realm Status, How to Play, Login, Register, and other UI elements  
 - 🖌️ Improved overall design consistency and responsiveness  
@@ -32,13 +35,7 @@ Watch on YouTube: [SahtoutCMS Demo](https://www.youtube.com/watch?v=wHZypMui6aQ 
   - Forgot password system
   - Secure login with reCAPTCHA
   - USER ACCOUNT Dashboard (Account Information,Quick Stats ingame characters,security change password,email)
-
-
-- **Shop System**
-  - Purchase in-game services: Character Rename, Faction Change, Level Boost,Gold
-  - Item shop for gear, mounts, pets + a tooltip hover
-  - Token or point (manually added by admin)
-
+ 
 - **Admin Panel**  [Filter for Better Visual]
   - News management (add,update,delete)
   - User management Website(Modify email,admin roles,tokens,points)----[can see more information about user]----
@@ -46,6 +43,18 @@ Watch on YouTube: [SahtoutCMS Demo](https://www.youtube.com/watch?v=wHZypMui6aQ 
   - Character management (added gold,change level,teleport)----[can see more information about character]----
   - Shop management (add/remove/update items/services)----[can see more information about Shop Products]----
   - In-game commands via SOAP (teleport, rename, kick, etc.)----[You have Full SOAP Command Executor to controle server from the website]----
+
+- **Admin Settings**
+  - General: logo upload, social media links
+  - SMTP: email settings, enable/disable
+  - reCAPTCHA: keys, enable/disable
+  - Realm: name, IP, port, logo
+  - SOAP: GM command connection
+    
+- **Shop System**
+  - Purchase in-game services: Character Rename, Faction Change, Level Boost,Gold
+  - Item shop for gear, mounts, pets + a tooltip hover
+  - Token or point (manually added by admin)
 
 - **Additional**
   - Realm status display + online players + uptime
@@ -55,6 +64,10 @@ Watch on YouTube: [SahtoutCMS Demo](https://www.youtube.com/watch?v=wHZypMui6aQ 
   - Installer for easy setup
   - Character inspector items and stats (item tooltip and 3d model for test)
   - Multilingual support for static pages + installer
+  - Brute-force protection
+  - reCAPTCHA support (can enable/disable via installer or admin settings)
+  - SMTP email configuration for account activation and password recovery (enable/disable)
+    
 - **Armory Pages**
   - **Top 50 Players:** Sorted by level and PvP kills, complete with race, class, and faction icons and GUILD NAME.
   - **Arena Teams:** Separate leaderboards for 2v2, 3v3, and 5v5 teams, showing rankings, team info, wins, losses, win rate, and rating.
@@ -88,8 +101,9 @@ MIT License — see [LICENSE](LICENSE) for details.
 
 ## Screenshots
 <img width="1914" height="936" alt="image" src="https://github.com/user-attachments/assets/ea53eddc-da0d-4f65-a2b1-80396d505c47" />
-<img width="569" height="851" alt="image" src="https://github.com/user-attachments/assets/8a16c3c2-f161-4369-b81c-a47732b7c18f" />
-<img width="1906" height="918" alt="image" src="https://github.com/user-attachments/assets/4595aeb0-354e-4f66-be46-ef2f86a00e12" />
+<img width="495" height="789" alt="image" src="https://github.com/user-attachments/assets/a14aba5e-3ca9-4872-bd2f-7dd4915f7910" />
+<img width="1886" height="895" alt="image" src="https://github.com/user-attachments/assets/8c0ceaa9-c67b-4c75-8216-9f5cb2d4acbd" />
+<img width="1882" height="869" alt="image" src="https://github.com/user-attachments/assets/c5aaae3c-3958-435d-b892-0912b0a7c389" />
 <img width="1886" height="934" alt="image" src="https://github.com/user-attachments/assets/d9b28534-2a37-4d62-a01d-29a767107569" />
 <img width="1917" height="946" alt="image" src="https://github.com/user-attachments/assets/1d5e5a02-0d0d-4042-8a10-ee3d31ef82d8" />
 <img width="1429" height="937" alt="image" src="https://github.com/user-attachments/assets/3bbbeb19-b268-4aee-9d62-b3071f47ca44" />
