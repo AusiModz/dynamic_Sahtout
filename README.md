@@ -18,7 +18,10 @@ SahtoutCMS is a World of Warcraft website for AzerothCore WOLTK 3.3.5 (with SRP6
 Watch on YouTube: [SahtoutCMS Demo](https://www.youtube.com/watch?v=wHZypMui6aQ )  
 
 ## 🔄 Latest Updates
-
+- 🛡️ Added **failed_logins** and **reset_attempts** tables for security tracking
+- ⚙️ New **Admin Settings** panel for site management (logo,social media links,SMTP,RECAPTCHA..)
+- ✨ Installer & Admin now support **reCAPTCHA** and **SMTP options** (enable/disable)
+- 🔒 Implemented **brute-force protection** for login, forgot password, and reset password
 - 🌍 Multilingual support for all static pages (including the installer)  
 - ✨ Updated styles for Realm Status, How to Play, Login, Register, and other UI elements  
 - 🖌️ Improved overall design consistency and responsiveness  
@@ -32,13 +35,7 @@ Watch on YouTube: [SahtoutCMS Demo](https://www.youtube.com/watch?v=wHZypMui6aQ 
   - Forgot password system
   - Secure login with reCAPTCHA
   - USER ACCOUNT Dashboard (Account Information,Quick Stats ingame characters,security change password,email)
-
-
-- **Shop System**
-  - Purchase in-game services: Character Rename, Faction Change, Level Boost,Gold
-  - Item shop for gear, mounts, pets + a tooltip hover
-  - Token or point (manually added by admin)
-
+ 
 - **Admin Panel**  [Filter for Better Visual]
   - News management (add,update,delete)
   - User management Website(Modify email,admin roles,tokens,points)----[can see more information about user]----
@@ -46,6 +43,18 @@ Watch on YouTube: [SahtoutCMS Demo](https://www.youtube.com/watch?v=wHZypMui6aQ 
   - Character management (added gold,change level,teleport)----[can see more information about character]----
   - Shop management (add/remove/update items/services)----[can see more information about Shop Products]----
   - In-game commands via SOAP (teleport, rename, kick, etc.)----[You have Full SOAP Command Executor to controle server from the website]----
+
+- **Admin Settings**
+  - General: logo upload, social media links
+  - SMTP: email settings, enable/disable
+  - reCAPTCHA: keys, enable/disable
+  - Realm: name, IP, port, logo
+  - SOAP: GM command connection
+    
+- **Shop System**
+  - Purchase in-game services: Character Rename, Faction Change, Level Boost,Gold
+  - Item shop for gear, mounts, pets + a tooltip hover
+  - Token or point (manually added by admin)
 
 - **Additional**
   - Realm status display + online players + uptime
@@ -55,6 +64,10 @@ Watch on YouTube: [SahtoutCMS Demo](https://www.youtube.com/watch?v=wHZypMui6aQ 
   - Installer for easy setup
   - Character inspector items and stats (item tooltip and 3d model for test)
   - Multilingual support for static pages + installer
+  - Brute-force protection
+  - reCAPTCHA support (can enable/disable via installer or admin settings)
+  - SMTP email configuration for account activation and password recovery (enable/disable)
+    
 - **Armory Pages**
   - **Top 50 Players:** Sorted by level and PvP kills, complete with race, class, and faction icons and GUILD NAME.
   - **Arena Teams:** Separate leaderboards for 2v2, 3v3, and 5v5 teams, showing rankings, team info, wins, losses, win rate, and rating.
