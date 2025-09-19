@@ -20,7 +20,7 @@ return [
     'tab_characters' => 'Charaktere',
     'tab_activity' => 'Aktivität',
     'tab_security' => 'Sicherheit',
-
+    'tab_vote' => 'Abstimmen',
     // Karten
     'card_basic_info' => 'Grundlegende Infos',
     'card_contact' => 'Kontakt',

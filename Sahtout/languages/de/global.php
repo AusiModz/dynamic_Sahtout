@@ -17,7 +17,7 @@ return [
     'account_settings' => 'Kontoeinstellungen',
     'admin_panel' => 'Admin-Panel',
     'logout' => 'Abmelden',
-    
+    'vote' => 'Abstimmen',
     // Arena navigation
     'arenanav_solo_pvp' => 'SOLO PVP-Rangliste',
     'arenanav_2v2_arena' => '2v2-Arena',
@@ -41,6 +41,7 @@ return [
     'settings_nav_recaptcha' => 'reCAPTCHA',
     'settings_nav_realm' => 'Realm',
     'settings_nav_soap' => 'SOAP',
+    'settings_nav_vote_sites' => 'Abstimmungsseiten',
     
     // Social media alt text
     'footer_logo_alt' => 'Sahtout Server-Logo',

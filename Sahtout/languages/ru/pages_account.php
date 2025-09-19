@@ -20,7 +20,7 @@ return [
     'tab_characters' => 'Персонажи',
     'tab_activity' => 'Активность',
     'tab_security' => 'Безопасность',
-
+    'tab_vote' => 'Голосовать',
     // Карточки
     'card_basic_info' => 'Основная информация',
     'card_contact' => 'Контакт',

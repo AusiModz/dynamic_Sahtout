@@ -17,6 +17,7 @@ return [
     'account_settings' => 'Paramètres du compte',
     'admin_panel' => 'Panneau d’administration',
     'logout' => 'Déconnexion',
+    'vote' => 'Voter',
     
     // Arena navigation
     'arenanav_solo_pvp' => 'Classement SOLO PVP',
@@ -41,6 +42,7 @@ return [
     'settings_nav_recaptcha' => 'reCAPTCHA',
     'settings_nav_realm' => 'Royaume',
     'settings_nav_soap' => 'SOAP',
+    'settings_nav_vote_sites' => 'Sites de Vote',
     
     // Social media alt text
     'footer_logo_alt' => 'Logo du serveur Sahtout',

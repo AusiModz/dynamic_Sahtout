@@ -17,6 +17,7 @@ return [
     'account_settings' => 'Configuración de la cuenta',
     'admin_panel' => 'Panel de administración',
     'logout' => 'Cerrar sesión',
+    'vote' => 'Votar',
     
     // Arena navigation
     'arenanav_solo_pvp' => 'Clasificación SOLO PVP',
@@ -41,6 +42,7 @@ return [
     'settings_nav_recaptcha' => 'reCAPTCHA',
     'settings_nav_realm' => 'Reino',
     'settings_nav_soap' => 'SOAP',
+    'settings_nav_vote_sites' => 'Sitios de Votación',
     
     // Realm status (from realm_status.php)
    'error_direct_access' => 'No se permite el acceso directo a este archivo.',

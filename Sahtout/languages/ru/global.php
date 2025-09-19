@@ -17,6 +17,7 @@ return [
     'account_settings' => 'Настройки аккаунта',
     'admin_panel' => 'Панель администратора',
     'logout' => 'Выход',
+    'vote' => 'Голосовать',
     
     // Arena navigation
     'arenanav_solo_pvp' => 'Рейтинг SOLO PVP',
@@ -41,6 +42,7 @@ return [
     'settings_nav_recaptcha' => 'reCAPTCHA',
     'settings_nav_realm' => 'Реалм',
     'settings_nav_soap' => 'SOAP',
+    'settings_nav_vote_sites' => 'Сайты для голосования',
     
     // Social media alt text
     'footer_logo_alt' => 'Логотип сервера Sahtout',

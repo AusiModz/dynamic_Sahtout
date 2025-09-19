@@ -576,6 +576,15 @@ header nav a.active {
     color: #ffffff;
 }
 
+.dropdown-item.vote {
+    color: #ffffff;
+}
+
+.dropdown-item.vote:hover {
+    background: linear-gradient(135deg, #2ecc71 0%, #27ae60 100%);
+    color: #ffffff;
+}
+
 @keyframes fadeIn {
     from { opacity: 0; transform: translateY(-10px); }
     to { opacity: 1; transform: translateY(0); }
@@ -774,6 +783,10 @@ header nav a.active {
                                 <i class="fas fa-cogs"></i> <?php echo translate('admin_panel', 'Admin Panel'); ?>
                             </a>
                         <?php endif; ?>
+                        <div class="dropdown-divider"></div>
+                        <a href="<?php echo $base_path; ?>vote" class="dropdown-item vote">
+                            <i class="fas fa-vote-yea"></i> <?php echo translate('vote', 'Vote'); ?>
+                        </a>
                         <div class="dropdown-divider"></div>
                         <a href="<?php echo $base_path; ?>logout" class="dropdown-item logout">
                             <i class="fas fa-sign-out-alt"></i> <?php echo translate('logout', 'Logout'); ?>

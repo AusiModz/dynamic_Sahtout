@@ -246,7 +246,7 @@ require_once 'C:\xampp\htdocs\Sahtout\includes\header.php';
 <body>
     <div class="container-fluid">
         <div class="row">
-            <?php include 'C:\xampp\htdocs\Sahtout\includes\admin_sidebar.php'; ?>
+            <?php include __DIR__ . '/../../../includes/admin_sidebar.php'; ?>
             <main class="col-md-10 main-content">
                 <?php include 'C:\xampp\htdocs\Sahtout\pages\admin\settings\settings_navbar.php'; ?>
                 <div class="content">

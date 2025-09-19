@@ -1,0 +1,6 @@
+[2025-09-19 11:03:25] Request: {"user_id":"44","site_id":"arenatop100","csrf_token":"05b8e5ccffacb6d3a20db9c61174fb9ce86b7d10a89d24ccb3773d11a771ac0c"}, Session: null, IP: ::1
+[2025-09-19 11:03:25] Reward claimed: user_id=44, points=60, site_id: arenatop100
+[2025-09-19 11:03:29] Request: {"user_id":"44","site_id":"top100arena","csrf_token":"05b8e5ccffacb6d3a20db9c61174fb9ce86b7d10a89d24ccb3773d11a771ac0c"}, Session: null, IP: ::1
+[2025-09-19 11:03:29] Reward claimed: user_id=44, points=90, site_id: top100arena
+[2025-09-19 11:03:34] Request: {"user_id":"44","site_id":"gtop100","csrf_token":"05b8e5ccffacb6d3a20db9c61174fb9ce86b7d10a89d24ccb3773d11a771ac0c"}, Session: null, IP: ::1
+[2025-09-19 11:03:34] Reward claimed: user_id=44, points=100, site_id: gtop100

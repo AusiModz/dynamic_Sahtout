@@ -17,6 +17,7 @@ return [
     'account_settings' => 'Account Settings',
     'admin_panel' => 'Admin Panel',
     'logout' => 'Logout',
+    'vote' => 'Vote',
     
     // Arena navigation
     'arenanav_solo_pvp' => 'SOLO PVP Ladder',
@@ -41,6 +42,7 @@ return [
     'settings_nav_recaptcha' => 'reCAPTCHA',
     'settings_nav_realm' => 'Realm',
     'settings_nav_soap' => 'SOAP',
+    'settings_nav_vote_sites' => 'Vote Sites',
     
     // Social media alt text
     'footer_logo_alt' => 'Sahtout Server Logo',
