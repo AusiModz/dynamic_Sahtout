@@ -559,7 +559,6 @@ function getAvatarDisplayName($filename) {
             color: #ffd700;
             border: 2px solid #ffd700;
             border-radius: 4px;
-            font-family: 'UnifrakturCook', sans-serif;
             transition: all 0.3s ease;
         }
         .account-tabs .nav-link:hover {
@@ -788,19 +787,22 @@ function getAvatarDisplayName($filename) {
             <?php endif; ?>
 
             <ul class="nav nav-tabs account-tabs mb-4 justify-content-center" id="accountTabs" role="tablist">
-                <li class="nav-item" role="presentation">
-                    <button class="nav-link active" id="overview-tab" data-bs-toggle="tab" data-bs-target="#overview" type="button" role="tab"><?php echo translate('tab_overview', 'Overview'); ?></button>
-                </li>
-                <li class="nav-item" role="presentation">
-                    <button class="nav-link" id="characters-tab" data-bs-toggle="tab" data-bs-target="#characters" type="button" role="tab"><?php echo translate('tab_characters', 'Characters'); ?></button>
-                </li>
-                <li class="nav-item" role="presentation">
-                    <button class="nav-link" id="activity-tab" data-bs-toggle="tab" data-bs-target="#activity" type="button" role="tab"><?php echo translate('tab_activity', 'Activity'); ?></button>
-                </li>
-                <li class="nav-item" role="presentation">
-                    <button class="nav-link" id="security-tab" data-bs-toggle="tab" data-bs-target="#security" type="button" role="tab"><?php echo translate('tab_security', 'Security'); ?></button>
-                </li>
-            </ul>
+    <li class="nav-item" role="presentation">
+        <button class="nav-link active" id="overview-tab" data-bs-toggle="tab" data-bs-target="#overview" type="button" role="tab"><?php echo translate('tab_overview', 'Overview'); ?></button>
+    </li>
+    <li class="nav-item" role="presentation">
+        <button class="nav-link" id="characters-tab" data-bs-toggle="tab" data-bs-target="#characters" type="button" role="tab"><?php echo translate('tab_characters', 'Characters'); ?></button>
+    </li>
+    <li class="nav-item" role="presentation">
+        <button class="nav-link" id="activity-tab" data-bs-toggle="tab" data-bs-target="#activity" type="button" role="tab"><?php echo translate('tab_activity', 'Activity'); ?></button>
+    </li>
+    <li class="nav-item" role="presentation">
+        <a class="nav-link" href="vote"><?php echo translate('tab_vote', 'Vote'); ?></a>
+    </li>
+    <li class="nav-item" role="presentation">
+        <button class="nav-link" id="security-tab" data-bs-toggle="tab" data-bs-target="#security" type="button" role="tab"><?php echo translate('tab_security', 'Security'); ?></button>
+    </li>
+</ul>
 
             <div class="tab-content">
                 <div class="tab-pane fade show active" id="overview" role="tabpanel">
