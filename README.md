@@ -17,16 +17,25 @@ SahtoutCMS is a World of Warcraft website for AzerothCore WOLTK 3.3.5 (with SRP6
 ## 🎥 Demo Video  
 Watch on YouTube: [SahtoutCMS Demo](https://www.youtube.com/watch?v=wHZypMui6aQ )  
 
+🚀 Voting System Update – 19/09/2025
+🗂  Admin Settings: Add & manage vote sites easily
+💎 Rewards & Cooldowns: Users vote → claim points → wait for cooldowns. Both CMS & vote sites enforce timers
+📊 Vote History: Claimed votes move from vote_log → vote_log_history
+⚠️ Reminder: Each vote site may have its own cooldown system; some sites like www.xtremetop100.com
+ require VIP GOLD to send callbacks
+ 
 ## 🔄 Latest Updates
 - 🛡️ Added **failed_logins** and **reset_attempts** tables for security tracking
-- ⚙️ New **Admin Settings** panel for site management (logo,social media links,SMTP,RECAPTCHA..)
+- ⚙️ New **Admin Settings** panel for site management (logo,social media links,SMTP,RECAPTCHA,Voting..)
 - ✨ Installer & Admin now support **reCAPTCHA** and **SMTP options** (enable/disable)
 - 🔒 Implemented **brute-force protection** for login, forgot password, and reset password
 - 🌍 Multilingual support for all static pages (including the installer)  
 - ✨ Updated styles for Realm Status, How to Play, Login, Register, and other UI elements  
 - 🖌️ Improved overall design consistency and responsiveness  
-- ℹ️ Note: dynamic database content (shop items, news) is still single-language for now  
+- ℹ️ Note: dynamic database content (shop items, news) is still single-language for now
+  
 
+ 
 ## Features
 
 - **Account Management**
