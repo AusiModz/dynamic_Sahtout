@@ -7,14 +7,14 @@ if (!defined('ALLOWED_ACCESS')) {
 
 require_once dirname(__DIR__) . '/includes/config.settings.php';
 ?>
-<link rel="stylesheet" href="/sahtout/assets/css/footer.css">
+<link rel="stylesheet" href="<?php echo SUBDIR ?>assets/css/footer.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
 <footer>
   <div class="footer-container">
     <!-- Logo -->
     <div class="footer-logo">
-      <a href="/sahtout"><img src="/sahtout/<?php echo $site_logo; ?>" alt="<?php echo translate('footer_logo_alt', 'Sahtout Server Logo'); ?>" class="footer-logo-img"></a> 
+      <a href="<?php echo SUBDIR ?>"><img src="<?php echo SUBDIR ?><?php echo $site_logo; ?>" alt="<?php echo translate('footer_logo_alt', 'Sahtout Server Logo'); ?>" class="footer-logo-img"></a>
     </div>
 
     <!-- Copyright -->
@@ -56,7 +56,7 @@ require_once dirname(__DIR__) . '/includes/config.settings.php';
       <?php endif; ?>
       <?php if (!empty($social_links['kick'])): ?>
         <a href="<?php echo $social_links['kick']; ?>" target="_blank" aria-label="<?php echo translate('kick_alt', 'Kick'); ?>">
-          <img src="/sahtout/img/icons/kick-logo.png" alt="<?php echo translate('kick_alt', 'Kick'); ?>" class="kick-icon">
+          <img src="<?php echo SUBDIR ?>img/icons/kick-logo.png" alt="<?php echo translate('kick_alt', 'Kick'); ?>" class="kick-icon">
         </a>
       <?php endif; ?>
       <?php if (!empty($social_links['instagram'])): ?>

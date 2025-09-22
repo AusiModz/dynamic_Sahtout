@@ -24,7 +24,7 @@ if (!isset($_SESSION['user_id'])) {
 // Ensure $page_class is defined in the including page; default to 'default'
 $page_class = isset($page_class) ? $page_class : 'default';
 // Base path for XAMPP setup at C:\xampp\htdocs\Sahtout
-$base_path = '/sahtout/';
+$base_path = SUBDIR;
 
 // Get current URL without query string
 $currentUrl = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
@@ -63,8 +63,8 @@ if (isset($_SESSION['user_id'])) {
     // Query database for avatar, points, tokens, email, and role
     $stmt = $site_db->prepare("
         SELECT uc.points, uc.tokens, uc.avatar, uc.role, a.email 
-        FROM sahtout_site.user_currencies uc 
-        JOIN acore_auth.account a ON uc.account_id = a.id 
+        FROM ".$db_site.".user_currencies uc 
+        JOIN ".$db_auth.".account a ON uc.account_id = a.id 
         WHERE uc.account_id = ?
     ");
     if ($stmt) {
@@ -79,7 +79,7 @@ if (isset($_SESSION['user_id'])) {
             $role = $row['role'] ?? 'player';
             // Check if avatar is valid in profile_avatars
             if (!empty($row['avatar'])) {
-                $stmt_check = $site_db->prepare("SELECT filename FROM sahtout_site.profile_avatars WHERE filename = ? AND active = 1");
+                $stmt_check = $site_db->prepare("SELECT filename FROM ".$db_site.".profile_avatars WHERE filename = ? AND active = 1");
                 $stmt_check->bind_param('s', $row['avatar']);
                 $stmt_check->execute();
                 $check_result = $stmt_check->get_result();
@@ -164,7 +164,7 @@ header {
     position: relative;
 }
 body {
-    cursor: url('/Sahtout/img/pointer_wow.gif') 16 16, auto;
+    cursor: url('<?php echo SUBDIR ?>img/pointer_wow.gif') 16 16, auto;
 }
 
 header img {
@@ -175,7 +175,7 @@ header img {
 header img:hover {
     transform: scale(1.05);
     filter: drop-shadow(0 0 8px rgba(52, 152, 219, 0.7));
-    cursor: url('/Sahtout/img/hover_wow.gif') 16 16, auto;
+    cursor: url('<?php echo SUBDIR ?>img/hover_wow.gif') 16 16, auto;
 }
 
 header nav {

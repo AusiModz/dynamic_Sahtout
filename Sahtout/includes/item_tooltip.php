@@ -115,10 +115,10 @@ $specialStats = [
 ];
 
 $socketColors = [
-    1 => ['name' => 'Meta', 'icon' => '/Sahtout/img/shopimg/items/socketicons/socket_meta.gif'],
-    2 => ['name' => 'Red', 'icon' => '/Sahtout/img/shopimg/items/socketicons/socket_red.gif'],
-    4 => ['name' => 'Yellow', 'icon' => '/Sahtout/img/shopimg/items/socketicons/socket_yellow.gif'],
-    8 => ['name' => 'Blue', 'icon' => '/Sahtout/img/shopimg/items/socketicons/socket_blue.gif']
+    1 => ['name' => 'Meta', 'icon' => SUBDIR.'img/shopimg/items/socketicons/socket_meta.gif'],
+    2 => ['name' => 'Red', 'icon' => SUBDIR.'img/shopimg/items/socketicons/socket_red.gif'],
+    4 => ['name' => 'Yellow', 'icon' => SUBDIR.'img/shopimg/items/socketicons/socket_yellow.gif'],
+    8 => ['name' => 'Blue', 'icon' => SUBDIR.'img/shopimg/items/socketicons/socket_blue.gif']
 ];
 
 $classRestrictions = [

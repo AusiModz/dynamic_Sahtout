@@ -22,42 +22,42 @@ $page_class = $page_class ?? '';
         <div class="card-body p-2 admin-sidebar-menu">
             <ul class="nav flex-column admin-sidebar-nav">
                 <li class="nav-item">
-                    <a class="nav-link <?php echo $page_class === 'dashboard' ? 'active' : ''; ?>" href="/Sahtout/admin/dashboard">
+                    <a class="nav-link <?php echo $page_class === 'dashboard' ? 'active' : ''; ?>" href="<?php echo SUBDIR ?>admin/dashboard">
                         <i class="fas fa-tachometer-alt me-2"></i> <?php echo translate('admin_dashboard', 'Dashboard'); ?>
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link <?php echo $page_class === 'users' ? 'active' : ''; ?>" href="/Sahtout/admin/users">
+                    <a class="nav-link <?php echo $page_class === 'users' ? 'active' : ''; ?>" href="<?php echo SUBDIR ?>admin/users">
                         <i class="fas fa-users me-2"></i> <?php echo translate('admin_users', 'User Management'); ?>
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link <?php echo $page_class === 'anews' ? 'active' : ''; ?>" href="/Sahtout/admin/anews">
+                    <a class="nav-link <?php echo $page_class === 'anews' ? 'active' : ''; ?>" href="<?php echo SUBDIR ?>admin/anews">
                         <i class="fas fa-newspaper me-2"></i> <?php echo translate('admin_news', 'News Management'); ?>
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link <?php echo $page_class === 'characters' ? 'active' : ''; ?>" href="/Sahtout/admin/characters">
+                    <a class="nav-link <?php echo $page_class === 'characters' ? 'active' : ''; ?>" href="<?php echo SUBDIR ?>admin/characters">
                         <i class="fas fa-user-edit me-2"></i> <?php echo translate('admin_characters', 'Character Management'); ?>
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link <?php echo $page_class === 'shop' ? 'active' : ''; ?>" href="/Sahtout/admin/ashop">
+                    <a class="nav-link <?php echo $page_class === 'shop' ? 'active' : ''; ?>" href="<?php echo SUBDIR ?>admin/ashop">
                         <i class="fas fa-shopping-cart me-2"></i> <?php echo translate('admin_shop', 'Shop Management'); ?>
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link <?php echo $page_class === 'gm_cmd' ? 'active' : ''; ?>" href="/Sahtout/admin/gm_cmd">
+                    <a class="nav-link <?php echo $page_class === 'gm_cmd' ? 'active' : ''; ?>" href="<?php echo SUBDIR ?>admin/gm_cmd">
                         <i class="fas fa-terminal me-2"></i> <?php echo translate('admin_gm_commands', 'GM Commands'); ?>
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link <?php echo $page_class === 'settings' ? 'active' : ''; ?>" href="/Sahtout/admin/settings/general">
+                    <a class="nav-link <?php echo $page_class === 'settings' ? 'active' : ''; ?>" href="<?php echo SUBDIR ?>admin/settings/general">
                         <i class="fas fa-cogs me-2"></i> <?php echo translate('admin_settings', 'Settings'); ?>
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link text-danger" href="/Sahtout/logout">
+                    <a class="nav-link text-danger" href="<?php echo SUBDIR ?>logout">
                         <i class="fas fa-sign-out-alt me-2"></i> <?php echo translate('logout', 'Logout'); ?>
                     </a>
                 </li>
