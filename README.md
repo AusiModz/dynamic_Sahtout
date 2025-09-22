@@ -1,3 +1,5 @@
+<div>This IS an ALTERED version of SahtoutCMS but only in regard to what we can call accessability. The default forcing of file and database structure goes against every thing i want or need for my own project requirements this simply makes it more suited since the database and directory structure is not forced.
+Download the files to wherever you want and put in whatever folder you want, name your database tables what you want other than that follow default instructions for install.</div>
 <div align="center">
   <img width="612" height="408" alt="logo" src="https://github.com/user-attachments/assets/54293d96-03eb-4dda-9f22-e1c013d6053b" />
 </div>
