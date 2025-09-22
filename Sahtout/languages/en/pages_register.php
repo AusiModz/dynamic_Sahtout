@@ -9,7 +9,7 @@ return [
     'password_confirm_placeholder' => 'Confirm Password',
     'register_button' => 'Register',
     'login_link_text' => 'Click here to login',
-    'login_link_text_alt' => 'Already have an account? <a href="/sahtout/login">Login</a>',
+    'login_link_text_alt' => 'Already have an account? <a href="'.SUBDIR.'login">Login</a>',
     'email_subject' => 'Activate Your Account',
     'email_greeting' => 'Welcome, {username}!',
     'email_body' => 'Thank you for registering. Please click the button below to activate your account:',
