@@ -80,10 +80,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 $errors[] = "❌ {$name} " . translate('err_connection_failed', 'Connection failed: %s', $e->getMessage());
             }
         }
-
+$myDir = '/'.basename(dirname(__DIR__,1)).'/';
         if (empty($errors)) {
             $configContent = "<?php
 if (!defined('ALLOWED_ACCESS')) exit('Direct access not allowed.');
+define('SUBDIR', ".$myDir.");//required for dynamic structure
 \$db_host = '" . addslashes($dbHost) . "';
 \$db_user = '" . addslashes($dbUser) . "';
 \$db_pass = '" . addslashes($dbPass) . "';
@@ -91,7 +92,6 @@ if (!defined('ALLOWED_ACCESS')) exit('Direct access not allowed.');
 \$db_world = '" . addslashes($dbWorld) . "';
 \$db_char = '" . addslashes($dbChar) . "';
 \$db_site = '" . addslashes($dbSite) . "';
-
 \$auth_db = new mysqli(\$db_host,\$db_user,\$db_pass,\$db_auth);
 \$world_db = new mysqli(\$db_host,\$db_user,\$db_pass,\$db_world);
 \$char_db = new mysqli(\$db_host,\$db_user,\$db_pass,\$db_char);

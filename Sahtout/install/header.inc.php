@@ -30,7 +30,7 @@ $langNames = [
 ];
 
 // Current language data
-$currentFlag = "/Sahtout/languages/flags/{$langCode}.png";
+$currentFlag = "../languages/flags/{$langCode}.png";
 $currentLabel = htmlspecialchars($langNames[$langCode] ?? 'English');
 $currentFlagEsc = htmlspecialchars($currentFlag);
 ?>
@@ -154,20 +154,20 @@ $currentFlagEsc = htmlspecialchars($currentFlag);
                 <span id="langLabel"><?= htmlspecialchars($currentLabel) ?></span>
             </div>
             <ul class="lang-options">
-                <li data-value="en" data-flag="/Sahtout/languages/flags/en.png">
-                    <img src="/Sahtout/languages/flags/en.png" alt="English"> English
+                <li data-value="en" data-flag="../languages/flags/en.png">
+                    <img src="../languages/flags/en.png" alt="English"> English
                 </li>
-                <li data-value="fr" data-flag="/Sahtout/languages/flags/fr.png">
-                    <img src="/Sahtout/languages/flags/fr.png" alt="Français"> Français
+                <li data-value="fr" data-flag="../languages/flags/fr.png">
+                    <img src="../languages/flags/fr.png" alt="Français"> Français
                 </li>
-                <li data-value="es" data-flag="/Sahtout/languages/flags/es.png">
-                    <img src="/Sahtout/languages/flags/es.png" alt="Español"> Español
+                <li data-value="es" data-flag="../languages/flags/es.png">
+                    <img src="../languages/flags/es.png" alt="Español"> Español
                 </li>
-                <li data-value="de" data-flag="/Sahtout/languages/flags/de.png">
-                    <img src="/Sahtout/languages/flags/de.png" alt="Deutsch"> Deutsch
+                <li data-value="de" data-flag="../languages/flags/de.png">
+                    <img src="../languages/flags/de.png" alt="Deutsch"> Deutsch
                 </li>
-                <li data-value="ru" data-flag="/Sahtout/languages/flags/ru.png">
-                    <img src="/Sahtout/languages/flags/ru.png" alt="Русский"> Русский
+                <li data-value="ru" data-flag="../languages/flags/ru.png">
+                    <img src="../languages/flags/ru.png" alt="Русский"> Русский
                 </li>
             </ul>
         </div>
