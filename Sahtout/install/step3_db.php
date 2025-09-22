@@ -84,7 +84,7 @@ $myDir = '/'.basename(dirname(__DIR__,1)).'/';
         if (empty($errors)) {
             $configContent = "<?php
 if (!defined('ALLOWED_ACCESS')) exit('Direct access not allowed.');
-define('SUBDIR', ".$myDir.");//required for dynamic structure
+define('SUBDIR', '".$myDir."');//required for dynamic structure
 \$db_host = '" . addslashes($dbHost) . "';
 \$db_user = '" . addslashes($dbUser) . "';
 \$db_pass = '" . addslashes($dbPass) . "';
