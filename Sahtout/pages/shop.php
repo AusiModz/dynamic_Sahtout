@@ -123,7 +123,7 @@ if (!empty($_SESSION['user_id']) && isset($_SESSION['last_purchase_time'])) {
     <meta name="description" content="<?php echo translate('shop_meta_description', 'Browse and purchase items, mounts, pets, gold, and services for Sahtout WoW Server'); ?>">
     <title><?php echo translate('shop_page_title', 'Sahtout Server Shop'); ?></title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="/Sahtout/assets/css/footer.css">
+    <link rel="stylesheet" href="<?php echo SUBDIR ?>assets/css/footer.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 </head>
 <body class="shop">
@@ -356,7 +356,7 @@ if (!empty($_SESSION['user_id']) && isset($_SESSION['last_purchase_time'])) {
 
     <style>
     body {
-        background: url('/sahtout/img/backgrounds/bg-shop.jpg') no-repeat center center fixed;
+        background: url('<?php echo SUBDIR ?>img/backgrounds/bg-shop.jpg') no-repeat center center fixed;
         background-size: cover;
     }
     .shop-container {

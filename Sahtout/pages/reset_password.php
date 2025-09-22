@@ -9,7 +9,7 @@ $page_class = 'reset_password';
 require_once '../includes/header.php';
 
 if (isset($_SESSION['user_id'])) {
-    header("Location: /sahtout/account");
+    header("Location: ".SUBDIR."account");
     exit();
 }
 
@@ -165,7 +165,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && $valid_token) {
             min-height: 100vh;
             display: flex;
             flex-direction: column;
-            background: url('/sahtout/img/backgrounds/bg-login.jpg') no-repeat center center fixed;
+            background: url('<?php echo SUBDIR ?>img/backgrounds/bg-login.jpg') no-repeat center center fixed;
             background-size: cover;
             font-family: 'UnifrakturCook', 'Arial', sans-serif;
             position: relative;
@@ -346,11 +346,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && $valid_token) {
                 <?php if ($success): ?>
                     <div class="success">
                         <p><?php echo htmlspecialchars($success); ?></p>
-                        <button onclick="window.location.href='/sahtout/login'" class="login-button"><?php echo translate('login_link', 'Back to Login'); ?></button>
+                        <button onclick="window.location.href='<?php echo SUBDIR ?>login'" class="login-button"><?php echo translate('login_link', 'Back to Login'); ?></button>
                     </div>
                     <script>
                         setTimeout(() => {
-                            window.location.href = '/sahtout/login';
+                            window.location.href = '<?php echo SUBDIR ?>login';
                         }, 3000);
                     </script>
                 <?php else: ?>
@@ -364,7 +364,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && $valid_token) {
                             <?php endif; ?>
                             <button type="submit"><?php echo translate('reset_button', 'Reset Password'); ?></button>
                             <div class="login-link">
-                                <a href="/sahtout/login"><?php echo translate('login_link', 'Back to Login'); ?></a>
+                                <a href="<?php echo SUBDIR ?>login"><?php echo translate('login_link', 'Back to Login'); ?></a>
                             </div>
                         </form>
                     <?php endif; ?>

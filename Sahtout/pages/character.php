@@ -148,7 +148,7 @@ require_once '../includes/header.php';
         .tab-nav button:hover {
             background: #333;
             color: #ffee58;
-            cursor: url('/Sahtout/img/hover_wow.gif') 16 16, auto;
+            cursor: url('<?php echo SUBDIR ?>img/hover_wow.gif') 16 16, auto;
         }
 
         .tab-nav button.active {
@@ -306,7 +306,7 @@ require_once '../includes/header.php';
 
         .pvp-members a:hover {
             color: #ffee58;
-            cursor: url('/Sahtout/img/hover_wow.gif') 16 16, auto;
+            cursor: url('<?php echo SUBDIR ?>img/hover_wow.gif') 16 16, auto;
         }
 
         .member-details {
@@ -360,7 +360,7 @@ require_once '../includes/header.php';
         .slot:hover {
             background-color: #333;
             border-color: #666;
-            cursor: url('/Sahtout/img/hover_wow.gif') 16 16, auto;
+            cursor: url('<?php echo SUBDIR ?>img/hover_wow.gif') 16 16, auto;
         }
 
         .slot-icon {
@@ -1252,7 +1252,7 @@ if ($guid > 0) {
                     <div class="slot-icon">
                         <?php
                         $icon = isset($items[$slot]) && !empty($items[$slot]['icon']) ? $items[$slot]['icon'] : ($defaultIcons[$slot] ?? 'inv_misc_questionmark');
-                        $iconSrc = isset($items[$slot]) && !empty($items[$slot]['icon']) ? "https://wow.zamimg.com/images/wow/icons/large/$icon.jpg" : "/Sahtout/img/characterarmor/$icon";
+                        $iconSrc = isset($items[$slot]) && !empty($items[$slot]['icon']) ? "https://wow.zamimg.com/images/wow/icons/large/$icon.jpg" : SUBDIR."img/characterarmor/$icon";
                         ?>
                         <img src="<?= htmlspecialchars($iconSrc) ?>" alt="<?= htmlspecialchars($slotLabels[$slot]) ?>" loading="lazy">
                     </div>
@@ -1279,7 +1279,7 @@ if ($guid > 0) {
                     <span class="character-race"><?= isset($races[$character['race']]) ? htmlspecialchars($races[$character['race']]['name']) : translate('race_unknown', 'Unknown') ?></span>
                 </div>
                 <div class="character-image">
-                    <img src="/Sahtout/3dmodels/3d_default.gif" alt="<?php echo translate('default_character_image', 'Default Character Image'); ?>" class="default-image">
+                    <img src="<?php echo SUBDIR ?>3dmodels/3d_default.gif" alt="<?php echo translate('default_character_image', 'Default Character Image'); ?>" class="default-image">
                     <script type="importmap">
                         {
                             "imports": {
@@ -1313,7 +1313,7 @@ if ($guid > 0) {
                         <?php
                         $raceIcon = isset($races[$character['race']]) ? $races[$character['race']]['icon'] : 'unknown';
                         $gender = ($character['gender'] ?? 0) == 0 ? 'male' : 'female';
-                        $modelPath = "/Sahtout/3dmodels/character/$raceIcon/$gender/$raceIcon.gltf";
+                        $modelPath = SUBDIR."3dmodels/character/$raceIcon/$gender/$raceIcon.gltf";
                         ?>
                         const modelPath = <?= json_encode($modelPath) ?>;
 
@@ -1389,7 +1389,7 @@ if ($guid > 0) {
                             <div class="slot-icon">
                                 <?php
                                 $icon = isset($items[$slot]) && !empty($items[$slot]['icon']) ? $items[$slot]['icon'] : ($defaultIcons[$slot] ?? 'inv_misc_questionmark');
-                                $iconSrc = isset($items[$slot]) && !empty($items[$slot]['icon']) ? "https://wow.zamimg.com/images/wow/icons/large/$icon.jpg" : "/Sahtout/img/characterarmor/$icon";
+                                $iconSrc = isset($items[$slot]) && !empty($items[$slot]['icon']) ? "https://wow.zamimg.com/images/wow/icons/large/$icon.jpg" : SUBDIR."img/characterarmor/$icon";
                                 ?>
                                 <img src="<?= htmlspecialchars($iconSrc) ?>" alt="<?= htmlspecialchars($slotLabels[$slot]) ?>" loading="lazy">
                             </div>
@@ -1414,7 +1414,7 @@ if ($guid > 0) {
                     <div class="slot-icon">
                         <?php
                         $icon = isset($items[$slot]) && !empty($items[$slot]['icon']) ? $items[$slot]['icon'] : ($defaultIcons[$slot] ?? 'inv_misc_questionmark');
-                        $iconSrc = isset($items[$slot]) && !empty($items[$slot]['icon']) ? "https://wow.zamimg.com/images/wow/icons/large/$icon.jpg" : "/Sahtout/img/characterarmor/$icon";
+                        $iconSrc = isset($items[$slot]) && !empty($items[$slot]['icon']) ? "https://wow.zamimg.com/images/wow/icons/large/$icon.jpg" : SUBDIR."img/characterarmor/$icon";
                         ?>
                         <img src="<?= htmlspecialchars($iconSrc) ?>" alt="<?= htmlspecialchars($slotLabels[$slot]) ?>" loading="lazy">
                     </div>
@@ -1545,10 +1545,10 @@ if ($guid > 0) {
                                     $class = isset($classes[$member['class']]) ? htmlspecialchars($classes[$member['class']]['name']) : translate('class_unknown', 'Unknown');
                                     $class_icon_name = isset($classes[$member['class']]) ? $classes[$member['class']]['icon'] : 'unknown';
                                     $class_abbr = isset($class_abbr[$class]) ? $class_abbr[$class] : substr($class, 0, 3);
-                                    $faction_icon = "/Sahtout/img/accountimg/faction/$faction_icon.png";
+                                    $faction_icon = SUBDIR."img/accountimg/faction/$faction_icon.png";
                                     $gender_dir = ($member['gender'] ?? 0) == 0 ? 'male' : 'female';
-                                    $race_icon = "/Sahtout/img/accountimg/race/$gender_dir/$race_icon_name.png";
-                                    $class_icon = "/Sahtout/img/accountimg/class/$class_icon_name.webp";
+                                    $race_icon = SUBDIR."img/accountimg/race/$gender_dir/$race_icon_name.png";
+                                    $class_icon = SUBDIR."img/accountimg/class/$class_icon_name.webp";
                                     if ($member['guid'] == $character['guid']) {
                                         echo "<li class=\"current-player\">";
                                         echo "$name <span class=\"member-details $faction\">";
@@ -1557,7 +1557,7 @@ if ($guid > 0) {
                                         echo "<img src=\"$class_icon\" alt=\"$class\" title=\"$class\" class=\"inline-block\">";
                                         echo "</span></li>";
                                     } else {
-                                        echo "<a href=\"/Sahtout/character?guid={$member['guid']}\" class=\"pvp-members-link\">";
+                                        echo "<a href=\"".SUBDIR."character?guid={$member['guid']}\" class=\"pvp-members-link\">";
                                         echo "<li>";
                                         echo "$name <span class=\"member-details $faction\">";
                                         echo "<img src=\"$faction_icon\" alt=\"$faction\" title=\"$faction\" class=\"inline-block\">";

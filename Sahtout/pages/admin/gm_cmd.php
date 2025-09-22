@@ -7,7 +7,7 @@ require_once '../../languages/language.php'; // This loads the translate() funct
 
 // Restrict access to admin or moderator roles
 if (!isset($_SESSION['user_id']) || !in_array($_SESSION['role'], ['admin', 'moderator'])) {
-    header('Location: /sahtout/login');
+    header('Location: '.SUBDIR.'login');
     exit;
 }
 

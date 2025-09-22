@@ -13,7 +13,7 @@ function redirect_with_params(string $base, array $params = []) {
 
 // Handle session check and redirect before any output
 if (!isset($_SESSION['user_id']) || !in_array($_SESSION['role'], ['admin', 'moderator'])) {
-    redirect_with_params('/Sahtout/login');
+    redirect_with_params(SUBDIR.'login');
 }
 
 // Initialize variables
@@ -49,7 +49,7 @@ if (isset($_GET['delete_image']) && is_numeric($_GET['delete_image'])) {
                 $result = $stmt->get_result();
                 if ($result->num_rows > 0) {
                     $row = $result->fetch_assoc();
-                    if ($row['button_image_url'] && strpos($row['button_image_url'], '/Sahtout/') === 0) {
+                    if ($row['button_image_url'] && strpos($row['button_image_url'], SUBDIR) === 0) {
                         $image_path = dirname(__DIR__, 3) . parse_url($row['button_image_url'], PHP_URL_PATH);
                         if (file_exists($image_path)) {
                             unlink($image_path);
@@ -73,7 +73,7 @@ if (isset($_GET['delete_image']) && is_numeric($_GET['delete_image'])) {
     } catch (Exception $e) {
         $errors[] = translate('err_database', 'Database error: ') . $e->getMessage();
     }
-    redirect_with_params('/Sahtout/admin/settings/vote_sites', $errors ? ['id' => $site_id, 'status' => 'error', 'message' => implode(', ', $errors)] : ['id' => $site_id, 'status' => 'success', 'message' => $message]);
+    redirect_with_params(SUBDIR.'admin/settings/vote_sites', $errors ? ['id' => $site_id, 'status' => 'error', 'message' => implode(', ', $errors)] : ['id' => $site_id, 'status' => 'success', 'message' => $message]);
 }
 
 // Handle Delete Site
@@ -92,7 +92,7 @@ if (isset($_GET['delete']) && is_numeric($_GET['delete'])) {
                 $result = $stmt->get_result();
                 if ($result->num_rows > 0) {
                     $row = $result->fetch_assoc();
-                    if ($row['button_image_url'] && strpos($row['button_image_url'], '/Sahtout/') === 0) {
+                    if ($row['button_image_url'] && strpos($row['button_image_url'], SUBDIR) === 0) {
                         $image_path = dirname(__DIR__, 3) . parse_url($row['button_image_url'], PHP_URL_PATH);
                         if (file_exists($image_path)) {
                             unlink($image_path);
@@ -114,7 +114,7 @@ if (isset($_GET['delete']) && is_numeric($_GET['delete'])) {
     } catch (Exception $e) {
         $errors[] = translate('err_database', 'Database error: ') . $e->getMessage();
     }
-    redirect_with_params('/Sahtout/admin/settings/vote_sites', $errors ? ['status' => 'error', 'message' => implode(', ', $errors)] : ['status' => 'success', 'message' => $message]);
+    redirect_with_params(SUBDIR.'admin/settings/vote_sites', $errors ? ['status' => 'error', 'message' => implode(', ', $errors)] : ['status' => 'success', 'message' => $message]);
 }
 
 // Handle Form Submission (Create/Update)
@@ -193,7 +193,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                         $result = $stmt->get_result();
                         if ($result->num_rows > 0) {
                             $row = $result->fetch_assoc();
-                            if ($row['button_image_url'] && strpos($row['button_image_url'], '/Sahtout/') === 0) {
+                            if ($row['button_image_url'] && strpos($row['button_image_url'], SUBDIR) === 0) {
                                 $image_path = dirname(__DIR__, 3) . parse_url($row['button_image_url'], PHP_URL_PATH);
                                 if (file_exists($image_path)) {
                                     unlink($image_path);
@@ -203,7 +203,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                         $stmt->close();
                     }
                     if (move_uploaded_file($file['tmp_name'], $upload_path)) {
-                        $button_image_url = '/Sahtout/img/voteimg/' . $new_file_name;
+                        $button_image_url = SUBDIR.'img/voteimg/' . $new_file_name;
                     } else {
                         $errors[] = translate('err_image_upload_failed', 'Failed to move uploaded image.');
                     }
@@ -218,7 +218,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 $result = $stmt->get_result();
                 if ($result->num_rows > 0) {
                     $row = $result->fetch_assoc();
-                    if ($row['button_image_url'] && strpos($row['button_image_url'], '/Sahtout/') === 0) {
+                    if ($row['button_image_url'] && strpos($row['button_image_url'], SUBDIR) === 0) {
                         $image_path = dirname(__DIR__, 3) . parse_url($row['button_image_url'], PHP_URL_PATH);
                         if (file_exists($image_path)) {
                             unlink($image_path);
@@ -235,7 +235,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 $result = $stmt->get_result();
                 if ($result->num_rows > 0) {
                     $row = $result->fetch_assoc();
-                    if ($row['button_image_url'] && strpos($row['button_image_url'], '/Sahtout/') === 0) {
+                    if ($row['button_image_url'] && strpos($row['button_image_url'], SUBDIR) === 0) {
                         $image_path = dirname(__DIR__, 3) . parse_url($row['button_image_url'], PHP_URL_PATH);
                         if (file_exists($image_path)) {
                             unlink($image_path);
@@ -312,7 +312,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 'callback_secret' => $callback_secret
             ];
         }
-        redirect_with_params('/Sahtout/admin/settings/vote_sites', $site_id ? ['id' => $site_id] + ($errors ? ['status' => 'error', 'message' => implode(', ', $errors)] : ['status' => 'success', 'message' => $message]) : ($errors ? ['status' => 'error', 'message' => implode(', ', $errors)] : ['status' => 'success', 'message' => $message]));
+        redirect_with_params(SUBDIR.'admin/settings/vote_sites', $site_id ? ['id' => $site_id] + ($errors ? ['status' => 'error', 'message' => implode(', ', $errors)] : ['status' => 'success', 'message' => $message]) : ($errors ? ['status' => 'error', 'message' => implode(', ', $errors)] : ['status' => 'success', 'message' => $message]));
     }
 }
 
@@ -591,7 +591,7 @@ require_once dirname(__DIR__, 3) . '/includes/header.php';
                         </div>
                     <?php endif; ?>
                     <div class="row justify-content-center mb-4">
-                        <form action="/Sahtout/admin/settings/vote_sites" method="POST" enctype="multipart/form-data" class="col-md-6">
+                        <form action="<?php echo SUBDIR ?>admin/settings/vote_sites" method="POST" enctype="multipart/form-data" class="col-md-6">
                             <input type="hidden" name="csrf_token" value="<?php echo htmlspecialchars($_SESSION['csrf_token']); ?>">
                             <input type="hidden" name="site_id" value="<?php echo $site_id; ?>">
                             <input type="hidden" name="MAX_FILE_SIZE" value="1048576">
@@ -620,7 +620,7 @@ require_once dirname(__DIR__, 3) . '/includes/header.php';
                                     <div class="mb-2">
                                         <img src="<?php echo htmlspecialchars($site_data['button_image_url']); ?>" alt="<?php echo translate('label_button_image', 'Button Image'); ?>" class="img-fluid" style="max-width: 150px;">
                                     </div>
-                                    <a href="/Sahtout/admin/settings/vote_sites?delete_image=<?php echo $site_id; ?>&csrf_token=<?php echo htmlspecialchars($_SESSION['csrf_token']); ?>"
+                                    <a href="<?php echo SUBDIR ?>admin/settings/vote_sites?delete_image=<?php echo $site_id; ?>&csrf_token=<?php echo htmlspecialchars($_SESSION['csrf_token']); ?>"
                                        class="btn btn-danger mb-2"
                                        onclick="return confirm('<?php echo translate('confirm_delete_image', 'Are you sure you want to delete this image?'); ?>');">
                                        <i class="fas fa-trash"></i> <?php echo translate('btn_delete_image', 'Delete Image'); ?>
@@ -658,7 +658,7 @@ require_once dirname(__DIR__, 3) . '/includes/header.php';
                             </div>
                             <button type="submit" class="btn btn-primary"><?php echo translate('btn_save_vote_site', 'Save Vote Site'); ?></button>
                             <?php if ($site_id > 0): ?>
-                                <a href="/Sahtout/admin/settings/vote_sites" class="btn btn-reset"><?php echo translate('btn_reset', 'Reset Form'); ?></a>
+                                <a href="<?php echo SUBDIR ?>admin/settings/vote_sites" class="btn btn-reset"><?php echo translate('btn_reset', 'Reset Form'); ?></a>
                             <?php endif; ?>
                         </form>
                     </div>
@@ -700,11 +700,11 @@ require_once dirname(__DIR__, 3) . '/includes/header.php';
                                             <td><?php echo htmlspecialchars($site['reward_points']); ?></td>
                                             <td><?php echo $site['uses_callback'] ? translate('option_yes', 'Yes') : translate('option_no', 'No'); ?></td>
                                             <td>
-                                                <a href="/Sahtout/admin/settings/vote_sites?id=<?php echo $site['id']; ?>"
+                                                <a href="<?php echo SUBDIR ?>admin/settings/vote_sites?id=<?php echo $site['id']; ?>"
                                                    class="btn btn-primary px-3 py-2">
                                                    <i class="fas fa-edit"></i> <?php echo translate('btn_edit', 'Edit'); ?>
                                                 </a>
-                                                <a href="/Sahtout/admin/settings/vote_sites?delete=<?php echo $site['id']; ?>&csrf_token=<?php echo htmlspecialchars($_SESSION['csrf_token']); ?>"
+                                                <a href="<?php echo SUBDIR ?>admin/settings/vote_sites?delete=<?php echo $site['id']; ?>&csrf_token=<?php echo htmlspecialchars($_SESSION['csrf_token']); ?>"
                                                    class="btn btn-sm btn-danger"
                                                    onclick="return confirm('<?php echo translate('confirm_delete', 'Are you sure you want to delete this vote site?'); ?>');">
                                                    <i class="fas fa-trash"></i> <?php echo translate('btn_delete', 'Delete'); ?>

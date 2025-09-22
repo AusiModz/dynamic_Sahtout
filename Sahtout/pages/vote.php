@@ -800,7 +800,7 @@ if (!function_exists('translate')) {
             // Claim rewards function
             function claimRewards(userId, siteId, csrfToken) {
                 console.log('Claiming rewards for user:', userId, 'site:', siteId, 'CSRF:', csrfToken);
-                fetch('/Sahtout/pages/pingback/claim.php', {
+                fetch('<?php echo SUBDIR ?>pages/pingback/claim.php', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/x-www-form-urlencoded',

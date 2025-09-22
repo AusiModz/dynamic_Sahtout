@@ -5,7 +5,7 @@ require_once '../languages/language.php'; // Include language file for translati
 $page_class = 'news';
 include dirname(__DIR__) . '/includes/header.php';
 
-$base_url = '/sahtout/';
+$base_url = SUBDIR;
 $default_image_url = 'img/newsimg/news.png';
 
 $items_per_page = 5;
@@ -59,11 +59,11 @@ if ($is_single) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <?php if ($is_single): ?>
         <meta name="description" content="<?php echo htmlspecialchars(substr($news['content'], 0, 150)); ?>...">
-        <link rel="canonical" href="/sahtout/news?slug=<?php echo htmlspecialchars($news['slug']); ?>">
+        <link rel="canonical" href="<?php echo SUBDIR ?>news?slug=<?php echo htmlspecialchars($news['slug']); ?>">
         <title><?php echo htmlspecialchars($news['title']); ?></title>
     <?php else: ?>
         <meta name="description" content="<?php echo translate('meta_description_list', 'Latest news and updates for our World of Warcraft server.'); ?>">
-        <link rel="canonical" href="/sahtout/news?page=<?php echo $current_page; ?>">
+        <link rel="canonical" href="<?php echo SUBDIR ?>news?page=<?php echo $current_page; ?>">
         <title><?php echo translate('page_title_list', 'News'); ?></title>
     <?php endif; ?>
     <meta name="robots" content="index">
@@ -96,7 +96,7 @@ if ($is_single) {
                     <div class="news-single-content">
                         <?php echo nl2br(htmlspecialchars($news['content'])); ?>
                     </div>
-                    <a href="/sahtout/news" class="news-single-back"><?php echo translate('back_to_news', '← Back to News'); ?></a>
+                    <a href="<?php echo SUBDIR ?>news" class="news-single-back"><?php echo translate('back_to_news', '← Back to News'); ?></a>
                 </article>
             <?php else: ?>
                 <!-- News List -->
@@ -106,7 +106,7 @@ if ($is_single) {
                 <?php else: ?>
                     <div class="news-list">
                         <?php while ($news = $result->fetch_assoc()): ?>
-                            <a href="/sahtout/news?slug=<?php echo htmlspecialchars($news['slug']); ?>" class="news-link">
+                            <a href="<?php echo SUBDIR ?>news?slug=<?php echo htmlspecialchars($news['slug']); ?>" class="news-link">
                                 <article class="news-item <?php echo $news['is_important'] ? 'important' : ''; ?>">
                                     <?php if (!empty($news['image_url'])): ?>
                                         <img src="<?php echo $base_url . htmlspecialchars($news['image_url']); ?>" 
@@ -138,19 +138,19 @@ if ($is_single) {
                     <?php if ($total_pages > 1): ?>
                         <div class="news-pagination">
                             <?php if ($current_page > 1): ?>
-                                <a href="/sahtout/news?page=<?php echo $current_page - 1; ?>" 
+                                <a href="<?php echo SUBDIR ?>news?page=<?php echo $current_page - 1; ?>"
                                    class="pagination-link" 
                                    aria-label="<?php echo translate('pagination_previous', 'Previous page'); ?>">« <?php echo translate('pagination_prev', 'Prev'); ?></a>
                             <?php endif; ?>
                             <?php for ($i = 1; $i <= $total_pages; $i++): ?>
-                                <a href="/sahtout/news?page=<?php echo $i; ?>" 
+                                <a href="<?php echo SUBDIR ?>news?page=<?php echo $i; ?>"
                                    class="pagination-link <?php echo $i == $current_page ? 'active' : ''; ?>" 
                                    aria-label="<?php echo sprintf(translate('pagination_go_to_page', 'Go to page %s'), $i); ?>">
                                     <?php echo $i; ?>
                                 </a>
                             <?php endfor; ?>
                             <?php if ($current_page < $total_pages): ?>
-                                <a href="/sahtout/news?page=<?php echo $current_page + 1; ?>" 
+                                <a href="<?php echo SUBDIR ?>news?page=<?php echo $current_page + 1; ?>"
                                    class="pagination-link" 
                                    aria-label="<?php echo translate('pagination_next_label', 'Next page'); ?>"><?php echo translate('pagination_next', 'Next'); ?> »</a>
                             <?php endif; ?>

@@ -4,7 +4,7 @@ require_once '../includes/session.php';
 require_once '../languages/language.php';
 require_once '../includes/config.cap.php';
 require_once '../includes/config.mail.php';
-require_once 'C:/xampp/htdocs/Sahtout/includes/srp6.php';
+require_once '../includes/srp6.php';
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
 
@@ -133,7 +133,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                         // Detect protocol and host dynamically
                         $protocol = (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off') ? "https://" : "http://";
                         $host = $_SERVER['HTTP_HOST'];
-                        $activation_link = $protocol . $host . "/sahtout/activate?token=$token";
+                        $activation_link = $protocol . $host . SUBDIR . "activate?token=$token";
 
                         // Send activation email
                         try {
@@ -207,7 +207,7 @@ require_once '../includes/header.php';
             width: 100%;
             overflow-x: hidden;
             margin: 0;
-            background: url('/sahtout/img/backgrounds/bg-register.jpg') no-repeat center center fixed;
+            background: url('<?php echo SUBDIR ?>img/backgrounds/bg-register.jpg') no-repeat center center fixed;
             background-size: cover;
             font-family: 'UnifrakturCook', 'Arial', sans-serif;
             color: #fff;
@@ -319,7 +319,7 @@ require_once '../includes/header.php';
             padding: 0.9rem 1.8rem;
             font-size: 1.3rem;
             border-radius: 6px;
-            cursor: url('/Sahtout/img/hover_wow.gif') 16 16, auto;
+            cursor: url('<?php echo SUBDIR ?>img/hover_wow.gif') 16 16, auto;
             transition: all 0.3s ease;
             text-transform: uppercase;
             letter-spacing: 1px;
@@ -463,7 +463,7 @@ require_once '../includes/header.php';
             <?php elseif ($success): ?>
                 <div class="register-form">
                     <p class="success"><?php echo htmlspecialchars($success); ?></p>
-                    <p class="login-link-container"><a href="/sahtout/login"><?php echo translate('login_link_text', 'Click here to login'); ?></a></p>
+                    <p class="login-link-container"><a href="<?php echo SUBDIR ?>login"><?php echo translate('login_link_text', 'Click here to login'); ?></a></p>
                 </div>
             <?php endif; ?>
 
@@ -479,7 +479,7 @@ require_once '../includes/header.php';
                 <button type="submit" class="register-button"><?php echo translate('register_button', 'Register'); ?></button>
             </form>
 
-            <p class="login-link-container"><?php echo translate('login_link_text_alt', 'Already have an account? <a href="/sahtout/login">Login</a>'); ?></p>
+            <p class="login-link-container"><?php echo translate('login_link_text_alt', 'Already have an account? <a href="'.SUBDIR.'login">Login</a>'); ?></p>
         </section>
     </main>
 

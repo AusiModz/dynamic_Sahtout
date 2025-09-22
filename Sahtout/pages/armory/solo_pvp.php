@@ -41,7 +41,7 @@ function getFaction($race) {
 // Image paths
 function factionIcon($race) {
     $faction = getFaction($race);
-    return "/Sahtout/img/accountimg/faction/" . strtolower(translate('solo_pvp_faction_alliance', 'Alliance') == $faction ? 'alliance' : 'horde') . ".png";
+    return SUBDIR."img/accountimg/faction/" . strtolower(translate('solo_pvp_faction_alliance', 'Alliance') == $faction ? 'alliance' : 'horde') . ".png";
 }
 function raceIcon($race, $gender) {
     $genderFolder = ($gender == 0) ? 'male' : 'female';
@@ -53,7 +53,7 @@ function raceIcon($race, $gender) {
         29 => 'voidelf'
     ];
     $raceName = isset($raceMap[$race]) ? $raceMap[$race] : 'unknown';
-    return "/Sahtout/img/accountimg/race/{$genderFolder}/{$raceName}.png";
+    return SUBDIR."img/accountimg/race/{$genderFolder}/{$raceName}.png";
 }
 function classIcon($class) {
     $classMap = [
@@ -62,7 +62,7 @@ function classIcon($class) {
         9 => 'warlock', 10 => 'monk', 11 => 'druid', 12 => 'demonhunter'
     ];
     $className = isset($classMap[$class]) ? $classMap[$class] : 'unknown';
-    return "/Sahtout/img/accountimg/class/{$className}.webp";
+    return SUBDIR."img/accountimg/class/{$className}.webp";
 }
 ?>
 
@@ -116,7 +116,7 @@ function classIcon($class) {
 
         .arena-content .top5:hover {
             background: linear-gradient(to right, #5807db, #0609c79c) !important;
-            cursor: url('/Sahtout/img/hover_wow.gif') 16 16, auto;
+            cursor: url('<?php echo SUBDIR ?>img/hover_wow.gif') 16 16, auto;
         }
 
         .arena-content tr:not(.top5):hover {
@@ -177,9 +177,9 @@ function classIcon($class) {
                             $playerCount = count($players);
                             foreach ($players as $p) {
                                 $rowClass = ($rank <= 5 && $playerCount >= 5) ? 'top5' : '';
-                                echo "<tr class='{$rowClass} tw-transition tw-duration-200' onclick=\"window.location='/sahtout/character?guid={$p['guid']}';\"'>
+                                echo "<tr class='{$rowClass} tw-transition tw-duration-200' onclick=\"window.location='".SUBDIR."character?guid={$p['guid']}';\"'>
                                     <td class='tw-py-3 tw-px-6'>{$rank}</td>
-                                    <td class='tw-py-3 tw-px-6'><a href='/sahtout/character?guid={$p['guid']}' class='tw-text-white tw-no-underline hover:tw-underline'>" . htmlspecialchars($p['name']) . "</a></td>
+                                    <td class='tw-py-3 tw-px-6'><a href='".SUBDIR."character?guid={$p['guid']}' class='tw-text-white tw-no-underline hover:tw-underline'>" . htmlspecialchars($p['name']) . "</a></td>
                                     <td class='tw-py-3 tw-px-6'>" . htmlspecialchars($p['guild_name']) . "</td>
                                     <td class='tw-py-3 tw-px-6'>
                                         <img src='" . factionIcon($p['race']) . "' alt='" . translate('solo_pvp_faction_alt', 'Faction') . "' class='tw-inline-block tw-w-6 tw-h-6 tw-rounded'>

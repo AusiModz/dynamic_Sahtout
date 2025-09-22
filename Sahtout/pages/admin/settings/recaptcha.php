@@ -1,19 +1,19 @@
 <?php
 define('ALLOWED_ACCESS', true);
-require_once 'C:\xampp\htdocs\Sahtout\includes\session.php';
-require_once 'C:\xampp\htdocs\Sahtout\languages\language.php';
+require_once dirname(__DIR__, 3) . '/includes/session.php';
+require_once dirname(__DIR__, 3) . '/languages/language.php';
 
 if (!isset($_SESSION['user_id']) || !in_array($_SESSION['role'], ['admin', 'moderator'])) {
-    header('Location: /Sahtout/login');
+    header('Location: '.SUBDIR.'login');
     exit;
 }
 
 $page_class = 'recaptcha';
-require_once 'C:\xampp\htdocs\Sahtout\includes\header.php';
+require_once dirname(__DIR__, 3) . '/includes/header.php';
 
 $errors = [];
 $success = false;
-$configCapFile = realpath('C:\xampp\htdocs\Sahtout\includes\config.cap.php');
+$configCapFile = realpath(dirname(__DIR__, 3).'\includes\config.cap.php');
 $default_site_key = '6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI';
 $default_secret_key = '6LeIxAcTAAAAAGG-vFI1TnRWxMZNFuojJ4WifJWe';
 
@@ -295,11 +295,11 @@ define('RECAPTCHA_SECRET_KEY', \$recaptcha_secret_key);
     <div class="container-fluid">
         <div class="row">
             <!-- Admin Sidebar -->
-            <?php include 'C:\xampp\htdocs\Sahtout\includes\admin_sidebar.php'; ?>
+            <?php include dirname(__DIR__, 3).'\includes\admin_sidebar.php'; ?>
             
             <!-- Main Content with Settings Navbar -->
             <main class="col-md-10 main-content">
-                <?php include 'C:\xampp\htdocs\Sahtout\pages\admin\settings\settings_navbar.php'; ?>
+                <?php include dirname(__DIR__, 3).'\pages\admin\settings\settings_navbar.php'; ?>
                 <div class="content">
                     <h2><?php echo translate('settings_recaptcha', 'reCAPTCHA Settings'); ?></h2>
                     
@@ -376,6 +376,6 @@ define('RECAPTCHA_SECRET_KEY', \$recaptcha_secret_key);
             </main>
         </div>
     </div>
-    <?php include_once 'C:\xampp\htdocs\Sahtout\includes\footer.php'; ?>
+    <?php include_once dirname(__DIR__, 3) . '/includes/footer.php'; ?>
 </body>
 </html>

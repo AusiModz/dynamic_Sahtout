@@ -1,19 +1,19 @@
 <?php
 define('ALLOWED_ACCESS', true);
-require_once 'C:\xampp\htdocs\Sahtout\includes\session.php';
-require_once 'C:\xampp\htdocs\Sahtout\languages\language.php';
+require_once dirname(__DIR__, 3).'\includes\session.php';
+require_once dirname(__DIR__, 3).'\languages\language.php';
 
 if (!isset($_SESSION['user_id']) || !in_array($_SESSION['role'], ['admin', 'moderator'])) {
-    header('Location: /Sahtout/login');
+    header('Location: '.SUBDIR.'login');
     exit;
 }
 
 $page_class = 'smtp';
-require_once 'C:\xampp\htdocs\Sahtout\includes\header.php';
+require_once dirname(__DIR__, 3).'\includes\header.php';
 
 $errors = [];
 $success = false;
-$configMailFile = realpath('C:\xampp\htdocs\Sahtout\includes\config.mail.php');
+$configMailFile = realpath(dirname(__DIR__, 3).'\includes\config.mail.php');
 
 // Load current SMTP settings
 $smtp_status = 'disabled';
@@ -47,7 +47,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     // Test SMTP only if enabled and no validation errors
     if (empty($errors) && $smtp_enabled) {
-        require_once 'C:\xampp\htdocs\Sahtout\vendor\autoload.php';
+        require_once dirname(__DIR__, 3).'\vendor\autoload.php';
         $mail = new PHPMailer\PHPMailer\PHPMailer(true);
         try {
             $mail->CharSet = 'UTF-8'; // Ensure UTF-8 encoding for non-Latin characters
@@ -82,7 +82,7 @@ define('SMTP_ENABLED', true);
 use PHPMailer\\PHPMailer\\PHPMailer;
 use PHPMailer\\PHPMailer\\Exception;
 
-require_once __DIR__ . '/../vendor/autoload.php';
+require_once dirname(__DIR__, 3).'/vendor/autoload.php';
 
 function getMailer(): PHPMailer {
     \$mail = new PHPMailer(true);
@@ -111,7 +111,7 @@ if (!defined('ALLOWED_ACCESS')) {
 use PHPMailer\\PHPMailer\\PHPMailer;
 use PHPMailer\\PHPMailer\\Exception;
 
-require_once __DIR__ . '/../vendor/autoload.php';
+require_once dirname(__DIR__, 3).'/vendor/autoload.php';
 
 \$smtp_enabled = false;
 define('SMTP_ENABLED', \$smtp_enabled);
@@ -351,11 +351,11 @@ function getMailer(): PHPMailer {
     <div class="container-fluid">
         <div class="row">
             <!-- Admin Sidebar -->
-            <?php include 'C:\xampp\htdocs\Sahtout\includes\admin_sidebar.php'; ?>
+            <?php include dirname(__DIR__, 3).'\includes\admin_sidebar.php'; ?>
             
             <!-- Main Content with Settings Navbar -->
             <main class="col-md-10 main-content">
-                <?php include 'C:\xampp\htdocs\Sahtout\pages\admin\settings\settings_navbar.php'; ?>
+                <?php include dirname(__DIR__, 3).'\pages\admin\settings\settings_navbar.php'; ?>
                 <div class="content">
                     <h2><?php echo translate('settings_smtp', 'SMTP Settings'); ?></h2>
                     
@@ -443,6 +443,6 @@ function getMailer(): PHPMailer {
             </main>
         </div>
     </div>
-    <?php require_once 'C:\xampp\htdocs\Sahtout\includes\footer.php'; ?>
+    <?php require_once dirname(__DIR__, 3).'\includes\footer.php'; ?>
 </body>
 </html>

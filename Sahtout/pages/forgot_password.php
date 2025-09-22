@@ -9,7 +9,7 @@ require_once '../includes/header.php';
 
 // Redirect to account if already logged in
 if (isset($_SESSION['user_id'])) {
-    header("Location: /sahtout/account");
+    header("Location: ".SUBDIR."account");
     exit();
 }
 
@@ -237,7 +237,7 @@ function sendResetEmail($username, $email, $token) {
         $mail->addAddress($email, $username);
         $mail->AddEmbeddedImage('logo.png', 'logo_cid');
         $mail->Subject = translate('email_subject', 'Password Reset Request');
-        $reset_link = $protocol . $_SERVER['HTTP_HOST'] . "/sahtout/reset_password?token=$token";
+        $reset_link = $protocol . $_SERVER['HTTP_HOST'] . SUBDIR . "reset_password?token=$token";
         $mail->Body = "<h2>" . str_replace('{username}', htmlspecialchars($username), translate('email_greeting', 'Welcome, {username}!')) . "</h2>
             <img src='cid:logo_cid' alt='Sahtout logo'>
             <p>" . translate('email_request', 'You requested a password reset. Please click the button below to reset your password:') . "</p>
@@ -285,7 +285,7 @@ function sendResetEmail($username, $email, $token) {
                     <?php endif; ?>
                     <button type="submit"><?php echo translate('send_button', 'Send Reset Link'); ?></button>
                     <div class="login-link">
-                        <?php echo translate('login_link', 'Remembered your password?'); ?> <a href="/sahtout/login"><?php echo translate('login_link_text', 'Log in here'); ?></a>
+                        <?php echo translate('login_link', 'Remembered your password?'); ?> <a href="<?php echo SUBDIR ?>login"><?php echo translate('login_link_text', 'Log in here'); ?></a>
                     </div>
                 </form>
             </div>

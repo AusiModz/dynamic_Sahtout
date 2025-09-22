@@ -5,14 +5,14 @@ require_once dirname(__DIR__, 3) . '/languages/language.php';
 
 if (!isset($_SESSION['user_id']) || !in_array($_SESSION['role'], ['admin', 'moderator'])) {
     $_SESSION['debug_errors'] = [translate('error_access_denied', 'Access denied.')];
-    header('Location: /Sahtout/login');
+    header('Location: '.SUBDIR.'login');
     exit;
 }
 
 // Validate CSRF token
 if (!isset($_POST['csrf_token']) || $_POST['csrf_token'] !== $_SESSION['csrf_token']) {
     $_SESSION['debug_errors'] = [translate('error_csrf_invalid', 'Invalid CSRF token.')];
-    header('Location: /Sahtout/admin/settings/general?status=error&message=' . urlencode(translate('error_csrf_invalid', 'Invalid CSRF token.')));
+    header('Location: '.SUBDIR.'admin/settings/general?status=error&message=' . urlencode(translate('error_csrf_invalid', 'Invalid CSRF token.')));
     exit;
 }
 
@@ -141,7 +141,7 @@ if (empty($errors)) {
 $_SESSION['csrf_token'] = bin2hex(random_bytes(32));
 
 // Redirect with feedback
-$redirect_url = '/Sahtout/admin/settings/general';
+$redirect_url = SUBDIR.'admin/settings/general';
 if ($success) {
     header("Location: $redirect_url?status=success");
 } else {

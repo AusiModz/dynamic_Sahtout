@@ -1,19 +1,19 @@
 <?php
 define('ALLOWED_ACCESS', true);
-require_once 'C:\xampp\htdocs\Sahtout\includes\session.php';
-require_once 'C:\xampp\htdocs\Sahtout\languages\language.php';
+require_once dirname(__DIR__, 3).'\includes\session.php';
+require_once dirname(__DIR__, 3).'\languages\language.php';
 
 if (!isset($_SESSION['user_id']) || !in_array($_SESSION['role'], ['admin', 'moderator'])) {
-    header('Location: /Sahtout/login');
+    header('Location: '.SUBDIR.'login');
     exit;
 }
 
 $page_class = 'realm';
-require_once 'C:\xampp\htdocs\Sahtout\includes\header.php';
+require_once dirname(__DIR__, 3).'\includes\header.php';
 
 $errors = [];
 $success = false;
-$realmsFile = realpath('C:\xampp\htdocs\Sahtout\includes\realm_status.php');
+$realmsFile = realpath(dirname(__DIR__, 3).'\includes\realm_status.php');
 $defaultLogo = 'img/logos/realm1_logo.webp';
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
@@ -65,7 +65,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $errors[] = "❌ " . translate('error_invalid_realm_logo_type', 'Invalid WebP file. MIME type must be image/webp.');
         }
         else {
-            $upload_dir = 'C:\xampp\htdocs\Sahtout\img\logos\\';
+            $upload_dir = dirname(__DIR__, 3).'\img\logos\\';
             if (!is_dir($upload_dir) || !is_writable($upload_dir)) {
                 $errors[] = "❌ " . translate('error_realm_logo_upload_failed', 'Upload directory is not accessible or writable.');
             } else {
@@ -303,11 +303,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <div class="container-fluid">
         <div class="row">
             <!-- Admin Sidebar -->
-            <?php include 'C:\xampp\htdocs\Sahtout\includes\admin_sidebar.php'; ?>
+            <?php include dirname(__DIR__, 3).'\includes\admin_sidebar.php'; ?>
             
             <!-- Main Content with Settings Navbar -->
             <main class="col-md-10 main-content">
-                <?php include 'C:\xampp\htdocs\Sahtout\pages\admin\settings\settings_navbar.php'; ?>
+                <?php include dirname(__DIR__, 3).'\pages\admin\settings\settings_navbar.php'; ?>
                 <div class="content">
                     <h2><?php echo translate('section_realm_config', 'Realm Configuration'); ?></h2>
 
@@ -357,7 +357,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             </main>
         </div>
     </div>
-    <?php require_once 'C:\xampp\htdocs\Sahtout\includes\footer.php'; ?>
+    <?php require_once dirname(__DIR__, 3).'\includes\footer.php'; ?>
     <script>
         // Update file name display when a file is selected
         document.getElementById('realm_logo').addEventListener('change', function() {

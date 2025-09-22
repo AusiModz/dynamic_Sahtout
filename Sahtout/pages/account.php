@@ -7,7 +7,7 @@ require_once '../languages/language.php'; // Include language file for translati
 
 // Early session validation
 if (!isset($_SESSION['user_id']) || !isset($_SESSION['username'])) {
-    header("Location: /Sahtout/login?error=invalid_session");
+    header("Location: ".SUBDIR."login?error=invalid_session");
     exit();
 }
 
@@ -43,14 +43,14 @@ if (isset($_SESSION['debug_errors'])) {
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if ($auth_db->connect_error || $char_db->connect_error || $site_db->connect_error) {
         $_SESSION['error'] = translate('error_database_connection', 'Database connection failed');
-        header("Location: /Sahtout/account");
+        header("Location: ".SUBDIR."account");
         exit();
     }
 
     // Verify CSRF token
     if (!isset($_POST['csrf_token']) || !hash_equals($_SESSION['csrf_token'], $_POST['csrf_token'])) {
         $_SESSION['error'] = translate('error_invalid_form_submission', 'Invalid form submission');
-        header("Location: /Sahtout/account");
+        header("Location: ".SUBDIR."account");
         exit();
     }
 
@@ -122,11 +122,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $stmt_log->close();
 
             $_SESSION['message'] = translate('message_email_updated', 'Email updated successfully!');
-            header("Location: /Sahtout/account");
+            header("Location: ".SUBDIR."account");
             exit();
         } catch (Exception $e) {
             $_SESSION['error'] = $e->getMessage();
-            header("Location: /Sahtout/account");
+            header("Location: ".SUBDIR."account");
             exit();
         }
     }
@@ -181,11 +181,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $stmt_log->close();
 
             $_SESSION['message'] = translate('message_password_changed', 'Password changed successfully!');
-            header("Location: /Sahtout/account");
+            header("Location: ".SUBDIR."account");
             exit();
         } catch (Exception $e) {
             $_SESSION['error'] = $e->getMessage();
-            header("Location: /Sahtout/account");
+            header("Location: ".SUBDIR."account");
             exit();
         }
     }
@@ -291,11 +291,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $stmt_log->close();
 
             $_SESSION['message'] = sprintf(translate('message_character_teleported', 'Character teleported to %s!'), ucfirst($destination));
-            header("Location: /Sahtout/account");
+            header("Location: ".SUBDIR."account");
             exit();
         } catch (Exception $e) {
             $_SESSION['error'] = $e->getMessage();
-            header("Location: /Sahtout/account");
+            header("Location: ".SUBDIR."account");
             exit();
         }
     }
@@ -342,11 +342,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $stmt_log->close();
 
             $_SESSION['message'] = translate('message_avatar_updated', 'Avatar updated successfully!');
-            header("Location: /Sahtout/account");
+            header("Location: ".SUBDIR."account");
             exit();
         } catch (Exception $e) {
             $_SESSION['error'] = $e->getMessage();
-            header("Location: /Sahtout/account");
+            header("Location: ".SUBDIR."account");
             exit();
         }
     }
@@ -480,7 +480,7 @@ function getGMStatus($gmlevel, $role) {
         $rank = translate('gm_rank_player', 'Player');
     }
     
-    return sprintf('<img src="/sahtout/img/accountimg/%s" alt="%s" class="account-icon"> <span style="color: %s">%s</span>', $icon, translate('status_icon', 'Status Icon'), $color, $rank);
+    return sprintf('<img src="'.SUBDIR.'img/accountimg/%s" alt="%s" class="account-icon"> <span style="color: %s">%s</span>', $icon, translate('status_icon', 'Status Icon'), $color, $rank);
 }
 
 function getOnlineStatus($online) {
@@ -496,7 +496,7 @@ function getRaceIcon($race, $gender) {
     $gender_folder = ($gender == 1) ? 'female' : 'male';
     $race_name = $races[$race] ?? 'default';
     $image = $race_name . '.png';
-    return sprintf('<img src="/sahtout/img/accountimg/race/%s/%s" alt="%s" class="account-icon">', $gender_folder, $image, translate('race_icon', 'Race Icon'));
+    return sprintf('<img src="'.SUBDIR.'img/accountimg/race/%s/%s" alt="%s" class="account-icon">', $gender_folder, $image, translate('race_icon', 'Race Icon'));
 }
 
 function getClassIcon($class) {
@@ -505,13 +505,13 @@ function getClassIcon($class) {
         5 => 'priest.webp', 6 => 'deathknight.webp', 7 => 'shaman.webp', 8 => 'mage.webp',
         9 => 'warlock.webp', 11 => 'druid.webp'
     ];
-    return sprintf('<img src="/sahtout/img/accountimg/class/%s" alt="%s" class="account-icon">', ($icons[$class] ?? 'default.jpg'), translate('class_icon', 'Class Icon'));
+    return sprintf('<img src="'.SUBDIR.'img/accountimg/class/%s" alt="%s" class="account-icon">', ($icons[$class] ?? 'default.jpg'), translate('class_icon', 'Class Icon'));
 }
 
 function getFactionIcon($race) {
     $allianceRaces = [1, 3, 4, 7, 11]; // Human, Dwarf, Night Elf, Gnome, Draenei
     $faction = in_array($race, $allianceRaces) ? 'alliance.png' : 'horde.png';
-    return sprintf('<img src="/sahtout/img/accountimg/faction/%s" alt="%s" class="account-icon">', $faction, translate('faction_icon', 'Faction Icon'));
+    return sprintf('<img src="'.SUBDIR.'img/accountimg/faction/%s" alt="%s" class="account-icon">', $faction, translate('faction_icon', 'Faction Icon'));
 }
 
 // Helper function to get avatar display name translation
@@ -816,7 +816,7 @@ function getAvatarDisplayName($filename) {
                                         <?php
                                         $avatar_display = !empty($currencies['avatar']) ? $currencies['avatar'] : 'user.jpg';
                                         ?>
-                                        <img src="/sahtout/img/accountimg/profile_pics/<?php echo htmlspecialchars($avatar_display); ?>" alt="<?php echo translate('avatar_alt', 'Avatar'); ?>" class="account-profile-pic mb-3">
+                                        <img src="<?php echo SUBDIR ?>img/accountimg/profile_pics/<?php echo htmlspecialchars($avatar_display); ?>" alt="<?php echo translate('avatar_alt', 'Avatar'); ?>" class="account-profile-pic mb-3">
                                         <p><strong><?php echo translate('label_username', 'Username'); ?>:</strong> <?php echo htmlspecialchars($accountInfo['username'] ?? 'N/A'); ?></p>
                                         <p><strong><?php echo translate('label_account_id', 'Account ID'); ?>:</strong> <?php echo $accountInfo['id'] ?? 'N/A'; ?></p>
                                         <p><strong><?php echo translate('label_status', 'Status'); ?>:</strong> <?php echo getAccountStatus($accountInfo['locked'] ?? 0, $banInfo); ?></p>
@@ -832,7 +832,7 @@ function getAvatarDisplayName($filename) {
                                         <p><strong><?php echo translate('label_email', 'Email'); ?>:</strong> <?php echo htmlspecialchars($accountInfo['email'] ?? translate('email_not_set', 'Not set')); ?></p>
                                         <p><strong class="text-warning"><?php echo translate('label_expansion', 'Expansion'); ?>:</strong> <?php echo translate('expansion_' . ($accountInfo['expansion'] ?? 2), ($accountInfo['expansion'] ?? 2) == 2 ? 'Wrath of the Lich King' : ($accountInfo['expansion'] == 1 ? 'The Burning Crusade' : 'Classic')); ?></p>
                                         <?php if ($role === 'admin' || $role === 'moderator' || $gmlevel > 0): ?>
-                                            <a href="/Sahtout/admin/dashboard" class="btn btn-account mt-3"><?php echo translate('button_admin_panel', 'Admin Panel'); ?></a>
+                                            <a href="<?php echo SUBDIR ?>admin/dashboard" class="btn btn-account mt-3"><?php echo translate('button_admin_panel', 'Admin Panel'); ?></a>
                                         <?php endif; ?>
                                     </div>
                                 </div>
@@ -880,7 +880,7 @@ function getAvatarDisplayName($filename) {
                                                 }
                                                 echo sprintf('<span class="account-gold">%.2fg</span>', number_format($totalGold / 10000, 2));
                                             ?>
-                                            <img src="/sahtout/img/accountimg/gold_coin.png" alt="<?php echo translate('gold_icon', 'Gold Icon'); ?>" class="account-icon">
+                                            <img src="<?php echo SUBDIR ?>img/accountimg/gold_coin.png" alt="<?php echo translate('gold_icon', 'Gold Icon'); ?>" class="account-icon">
                                         </p>
                                         <p><strong><?php echo translate('label_points', 'Points'); ?>:</strong> <?php echo $currencies['points']; ?> P</p>
                                         <p><strong><?php echo translate('label_tokens', 'Tokens'); ?>:</strong> <?php echo $currencies['tokens']; ?> T</p>
@@ -1021,7 +1021,7 @@ function getAvatarDisplayName($filename) {
                                 <div class="row row-cols-2 row-cols-md-4 row-cols-lg-6 g-2 account-gallery">
                                     <?php foreach ($available_avatars as $avatar): ?>
                                         <div class="col text-center">
-                                            <img src="/sahtout/img/accountimg/profile_pics/<?php echo htmlspecialchars($avatar['filename']); ?>" 
+                                            <img src="<?php echo SUBDIR ?>img/accountimg/profile_pics/<?php echo htmlspecialchars($avatar['filename']); ?>"
                                                  class="<?php echo $currencies['avatar'] === $avatar['filename'] ? 'selected' : ''; ?>" 
                                                  onclick="selectAvatar('<?php echo htmlspecialchars($avatar['filename']); ?>')" 
                                                  alt="<?php echo htmlspecialchars(getAvatarDisplayName($avatar['filename'])); ?>">
@@ -1029,7 +1029,7 @@ function getAvatarDisplayName($filename) {
                                         </div>
                                     <?php endforeach; ?>
                                     <div class="col text-center">
-                                        <img src="/sahtout/img/accountimg/profile_pics/user.jpg" 
+                                        <img src="<?php echo SUBDIR ?>img/accountimg/profile_pics/user.jpg"
                                              class="<?php echo empty($currencies['avatar']) ? 'selected' : ''; ?>" 
                                              onclick="selectAvatar('')" 
                                              alt="<?php echo translate('avatar_default', 'Default Avatar'); ?>">
@@ -1047,7 +1047,7 @@ function getAvatarDisplayName($filename) {
                     <div>
                         <h3 class="h4 text-warning"><?php echo translate('section_account_actions', 'Account Actions'); ?></h3>
                         <p class="text-center">
-                            <a href="/sahtout/logout" class="text-warning"><?php echo translate('action_logout', 'Logout'); ?></a> | 
+                            <a href="<?php echo SUBDIR ?>logout" class="text-warning"><?php echo translate('action_logout', 'Logout'); ?></a> |
                             <a href="#" class="text-danger"><?php echo translate('action_request_deletion', 'Request Account Deletion'); ?></a>
                         </p>
                     </div>

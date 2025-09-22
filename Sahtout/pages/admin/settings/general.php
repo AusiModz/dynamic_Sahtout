@@ -5,7 +5,7 @@ require_once dirname(__DIR__, 3) . '/languages/language.php';
 require_once dirname(__DIR__, 3) . '/includes/config.settings.php';
 
 if (!isset($_SESSION['user_id']) || !in_array($_SESSION['role'], ['admin', 'moderator'])) {
-    header('Location: /Sahtout/login');
+    header('Location: '.SUBDIR.'login');
     exit;
 }
 
@@ -179,7 +179,7 @@ require_once dirname(__DIR__, 3) . '/includes/header.php';
 
                     <!-- General Settings Form -->
                     <div class="row justify-content-center">
-                        <form action="/Sahtout/pages/admin/settings/save_general.php" method="POST" enctype="multipart/form-data" class="col-md-6">
+                        <form action="<?php echo SUBDIR ?>pages/admin/settings/save_general.php" method="POST" enctype="multipart/form-data" class="col-md-6">
                             <!-- CSRF Token -->
                             <input type="hidden" name="csrf_token" value="<?php echo htmlspecialchars($_SESSION['csrf_token']); ?>">
                             <!-- Max File Size (3MB) -->
@@ -226,7 +226,7 @@ require_once dirname(__DIR__, 3) . '/includes/header.php';
                                     <input type="url" name="twitch" class="form-control" placeholder="<?php echo translate('placeholder_twitch', 'Twitch URL'); ?>" value="<?php echo htmlspecialchars($social_links['twitch']); ?>">
                                 </div>
                                 <div class="input-group mb-2">
-                                    <span class="input-group-text social-icon"><img src="/Sahtout/img/icons/kick-logo.png" alt="Kick" class="kick-icon1"></span>
+                                    <span class="input-group-text social-icon"><img src="<?php echo SUBDIR ?>img/icons/kick-logo.png" alt="Kick" class="kick-icon1"></span>
                                     <input type="url" name="kick" class="form-control" placeholder="<?php echo translate('placeholder_kick', 'Kick URL'); ?>" value="<?php echo htmlspecialchars($social_links['kick']); ?>">
                                 </div>
                                 <div class="input-group mb-2">

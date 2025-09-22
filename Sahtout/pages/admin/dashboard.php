@@ -8,7 +8,7 @@ $page_class = 'dashboard';
 
 // Check if user is admin or moderator
 if (!isset($_SESSION['user_id']) || !in_array($_SESSION['role'], ['admin', 'moderator'])) {
-    header('Location: /sahtout/login');
+    header('Location: '.SUBDIR.'login');
     exit;
 }
 
@@ -377,7 +377,7 @@ $bans_result = $auth_db->query($bans_query);
                         <div class="card-header"><?php echo translate('admin_dashboard_recent_staff_header', 'Recent Admins & Moderators'); ?></div>
                         <div class="card-body">
                             <!-- Search and Filter Form -->
-                            <form class="search-form" method="GET" action="/Sahtout/admin/dashboard">
+                            <form class="search-form" method="GET" action="<?php echo SUBDIR ?>admin/dashboard">
                                 <div class="row mb-3">
                                     <div class="col-md-4">
                                         <input type="text" name="search_username" class="form-control" placeholder="<?php echo translate('admin_dashboard_search_username_placeholder', 'Search by username'); ?>" value="<?php echo htmlspecialchars($search_username); ?>">
@@ -468,7 +468,7 @@ $bans_result = $auth_db->query($bans_query);
                                                     <td><?php echo $ban['bandate'] ? date('M j, Y H:i', strtotime($ban['bandate'])) : translate('admin_dashboard_na', 'N/A'); ?></td>
                                                     <td><?php echo $ban['unbandate'] ? date('M j, Y H:i', strtotime($ban['unbandate'])) : translate('admin_dashboard_permanent', 'Permanent'); ?></td>
                                                     <td>
-                                                        <a href="/Sahtout/admin/users#user-<?php echo $ban['id']; ?>" class="btn"><?php echo translate('admin_dashboard_manage_button', 'Manage'); ?></a>
+                                                        <a href="<?php echo SUBDIR ?>admin/users#user-<?php echo $ban['id']; ?>" class="btn"><?php echo translate('admin_dashboard_manage_button', 'Manage'); ?></a>
                                                     </td>
                                                 </tr>
                                             <?php endwhile; ?>

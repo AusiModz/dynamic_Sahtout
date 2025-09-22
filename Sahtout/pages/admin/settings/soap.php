@@ -1,17 +1,17 @@
 <?php
 define('ALLOWED_ACCESS', true);
-require_once 'C:\xampp\htdocs\Sahtout\includes\session.php';
-require_once 'C:\xampp\htdocs\Sahtout\includes\config.php';
+require_once dirname(__DIR__, 3).'\includes\session.php';
+require_once dirname(__DIR__, 3).'\includes\config.php';
 
 if (!isset($_SESSION['user_id']) || !in_array($_SESSION['role'], ['admin', 'moderator'])) {
-    header('Location: /Sahtout/login');
+    header('Location: '.SUBDIR.'login');
     exit;
 }
 
 $page_class = 'soap';
 $errors = [];
 $success = false;
-$soapConfigFile = realpath('C:\xampp\htdocs\Sahtout\includes\soap.conf.php');
+$soapConfigFile = realpath(dirname(__DIR__, 3).'\includes\soap.conf.php');
 
 // Load current SOAP status
 $soap_status = 'not_configured';
@@ -100,7 +100,7 @@ if (!defined('ALLOWED_ACCESS')) {
     }
 }
 
-require_once 'C:\xampp\htdocs\Sahtout\includes\header.php';
+require_once dirname(__DIR__, 3).'\includes\header.php';
 ?>
 <!DOCTYPE html>
 <html lang="<?php echo htmlspecialchars($langCode); ?>">
@@ -246,9 +246,9 @@ require_once 'C:\xampp\htdocs\Sahtout\includes\header.php';
 <body>
     <div class="container-fluid">
         <div class="row">
-            <?php include __DIR__ . '/../../../includes/admin_sidebar.php'; ?>
+            <?php include dirname(__DIR__, 3).'/includes/admin_sidebar.php'; ?>
             <main class="col-md-10 main-content">
-                <?php include 'C:\xampp\htdocs\Sahtout\pages\admin\settings\settings_navbar.php'; ?>
+                <?php include dirname(__DIR__, 3).'\pages\admin\settings\settings_navbar.php'; ?>
                 <div class="content">
                     <h2><?php echo translate('header_soap_settings', 'SOAP Settings'); ?></h2>
 
@@ -318,6 +318,6 @@ require_once 'C:\xampp\htdocs\Sahtout\includes\header.php';
         </div>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
-    <?php include 'C:\xampp\htdocs\Sahtout\includes\footer.php'; ?>
+    <?php include dirname(__DIR__, 3).'\includes\footer.php'; ?>
 </body>
 </html>

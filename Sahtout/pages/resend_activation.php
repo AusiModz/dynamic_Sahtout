@@ -7,7 +7,7 @@ require_once '../languages/language.php'; // Add for translate()
 $page_class = 'resend_activation'; // Underscore for URL consistency
 require_once '../includes/header.php';
 if (isset($_SESSION['user_id'])) {
-    header("Location: /sahtout/account");
+    header("Location: ".SUBDIR."account");
     exit();
 }
 error_reporting(E_ALL);
@@ -77,7 +77,7 @@ function sendActivationEmail($username, $email, $token) {
         $mail->AddEmbeddedImage('logo.png', 'logo_cid');
         $mail->Subject = translate('email_subject', '[RESEND] Activate Your Account');
 
-        $activation_link = $protocol . $_SERVER['HTTP_HOST'] . "/sahtout/activate?token=$token";
+        $activation_link = $protocol . $_SERVER['HTTP_HOST'] . SUBDIR . "activate?token=$token";
 
         $mail->Body = "<h2>" . str_replace('{username}', htmlspecialchars($username), translate('email_greeting', 'Welcome, {username}!')) . "</h2>
             <img src='cid:logo_cid' alt='Sahtout logo'>
@@ -110,7 +110,7 @@ function sendActivationEmail($username, $email, $token) {
             min-height: 100vh;
             display: flex;
             flex-direction: column;
-            background: url('/sahtout/img/backgrounds/bg-resend.jpg') no-repeat center center fixed;
+            background: url('<?php echo SUBDIR ?>img/backgrounds/bg-resend.jpg') no-repeat center center fixed;
             background-size: cover;
             font-family: 'UnifrakturCook', 'Arial', sans-serif;
             position: relative;
@@ -284,7 +284,7 @@ function sendActivationEmail($username, $email, $token) {
                     <?php endif; ?>
                     <button type="submit"><?php echo translate('resend_button', 'Resend Activation Email'); ?></button>
                     <div class="login-link">
-                        <?php echo translate('login_link', 'Already activated?'); ?> <a href="/sahtout/login"><?php echo translate('login_link_text', 'Log in here'); ?></a>
+                        <?php echo translate('login_link', 'Already activated?'); ?> <a href="<?php echo SUBDIR ?>login"><?php echo translate('login_link_text', 'Log in here'); ?></a>
                     </div>
                 </form>
             </div>

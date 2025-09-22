@@ -12,7 +12,7 @@ define('ATTEMPT_WINDOW', 3600); // 1 hour window for attempt counting
 
 // Redirect to account if already logged in
 if (isset($_SESSION['user_id'])) {
-    header("Location: /Sahtout/account");
+    header("Location: ".SUBDIR."account");
     exit();
 }
 
@@ -223,7 +223,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                         $stmt->execute();
                         $stmt->close();
 
-                        header("Location: /Sahtout/account");
+                        header("Location: ".SUBDIR."account");
                         exit();
                     } else {
                         $errors[] = translate('error_invalid_credentials', 'Invalid username or password');
@@ -264,7 +264,7 @@ include_once '../includes/header.php';
             width: 100%;
             overflow-x: hidden;
             margin: 0;
-            background: url('/sahtout/img/backgrounds/bg-login.jpg') no-repeat center center fixed;
+            background: url('<?php echo SUBDIR ?>img/backgrounds/bg-login.jpg') no-repeat center center fixed;
             background-size: cover;
             font-family: 'UnifrakturCook', 'Arial', sans-serif;
             color: #fff;
@@ -375,7 +375,7 @@ include_once '../includes/header.php';
             padding: 0.9rem 1.8rem;
             font-size: 1.3rem;
             border-radius: 6px;
-            cursor: url('/Sahtout/img/hover_wow.gif') 16 16, auto;
+            cursor: url('<?php echo SUBDIR ?>img/hover_wow.gif') 16 16, auto;
             transition: all 0.3s ease;
             text-transform: uppercase;
             letter-spacing: 1px;
@@ -545,7 +545,7 @@ include_once '../includes/header.php';
                     <?php if ($show_resend_button): ?>
                         <div class="resend-link">
                             <p><?php echo translate('resend_activation_prompt', 'CLICK here:'); ?></p>
-                            <a href="/sahtout/resend_activation?username=<?php echo htmlspecialchars($username); ?>">
+                            <a href="<?php echo SUBDIR ?>resend_activation?username=<?php echo htmlspecialchars($username); ?>">
                                 <?php echo translate('resend_activation_link', 'Resend Activation Code'); ?>
                             </a>
                         </div>
@@ -568,10 +568,10 @@ include_once '../includes/header.php';
                 <?php endif; ?>
                 <button type="submit"><?php echo translate('login_button', 'Sign In'); ?></button>
                 <div class="register-link">
-                    <?php echo translate('register_link_text', 'Don\'t have an account? <a href="/sahtout/register">Register now</a>'); ?>
+                    <?php echo translate('register_link_text', 'Don\'t have an account? <a href="'.SUBDIR.'register">Register now</a>'); ?>
                 </div>
                 <div class="forgot-password-link">
-                    <?php echo translate('forgot_password_link_text', 'Forgot your password? <a href="/sahtout/forgot_password">Reset it here</a>'); ?>
+                    <?php echo translate('forgot_password_link_text', 'Forgot your password? <a href="'.SUBDIR.'forgot_password">Reset it here</a>'); ?>
                 </div>
             </form>
         </div>

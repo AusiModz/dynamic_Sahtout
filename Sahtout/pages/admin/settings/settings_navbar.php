@@ -15,12 +15,12 @@ $page_class = $page_class ?? '';
             <i class="fas fa-bars"></i>
         </button>
         <ul class="settings-nav-tabs">
-            <li><a class="nav-link <?php echo $page_class === 'general' ? 'active' : ''; ?>" href="/Sahtout/admin/settings/general"><i class="fas fa-cog me-1"></i> <?php echo translate('settings_nav_general', 'General'); ?></a></li>
-            <li><a class="nav-link <?php echo $page_class === 'smtp' ? 'active' : ''; ?>" href="/Sahtout/admin/settings/smtp"><i class="fas fa-envelope me-1"></i> <?php echo translate('settings_nav_smtp', 'SMTP'); ?></a></li>
-            <li><a class="nav-link <?php echo $page_class === 'recaptcha' ? 'active' : ''; ?>" href="/Sahtout/admin/settings/recaptcha"><i class="fas fa-shield-alt me-1"></i> <?php echo translate('settings_nav_recaptcha', 'reCAPTCHA'); ?></a></li>
-            <li><a class="nav-link <?php echo $page_class === 'realm' ? 'active' : ''; ?>" href="/Sahtout/admin/settings/realm"><i class="fas fa-server me-1"></i> <?php echo translate('settings_nav_realm', 'Realm'); ?></a></li>
-            <li><a class="nav-link <?php echo $page_class === 'soap' ? 'active' : ''; ?>" href="/Sahtout/admin/settings/soap"><i class="fas fa-code me-1"></i> <?php echo translate('settings_nav_soap', 'SOAP'); ?></a></li>
-            <li><a class="nav-link <?php echo $page_class === 'vote-sites' ? 'active' : ''; ?>" href="/Sahtout/admin/settings/vote_sites"><i class="fas fa-vote-yea me-1"></i> <?php echo translate('settings_nav_vote_sites', 'Vote Sites'); ?></a></li>
+            <li><a class="nav-link <?php echo $page_class === 'general' ? 'active' : ''; ?>" href="<?php echo SUBDIR ?>admin/settings/general"><i class="fas fa-cog me-1"></i> <?php echo translate('settings_nav_general', 'General'); ?></a></li>
+            <li><a class="nav-link <?php echo $page_class === 'smtp' ? 'active' : ''; ?>" href="<?php echo SUBDIR ?>admin/settings/smtp"><i class="fas fa-envelope me-1"></i> <?php echo translate('settings_nav_smtp', 'SMTP'); ?></a></li>
+            <li><a class="nav-link <?php echo $page_class === 'recaptcha' ? 'active' : ''; ?>" href="<?php echo SUBDIR ?>admin/settings/recaptcha"><i class="fas fa-shield-alt me-1"></i> <?php echo translate('settings_nav_recaptcha', 'reCAPTCHA'); ?></a></li>
+            <li><a class="nav-link <?php echo $page_class === 'realm' ? 'active' : ''; ?>" href="<?php echo SUBDIR ?>admin/settings/realm"><i class="fas fa-server me-1"></i> <?php echo translate('settings_nav_realm', 'Realm'); ?></a></li>
+            <li><a class="nav-link <?php echo $page_class === 'soap' ? 'active' : ''; ?>" href="<?php echo SUBDIR ?>admin/settings/soap"><i class="fas fa-code me-1"></i> <?php echo translate('settings_nav_soap', 'SOAP'); ?></a></li>
+            <li><a class="nav-link <?php echo $page_class === 'vote-sites' ? 'active' : ''; ?>" href="<?php echo SUBDIR ?>admin/settings/vote_sites"><i class="fas fa-vote-yea me-1"></i> <?php echo translate('settings_nav_vote_sites', 'Vote Sites'); ?></a></li>
         </ul>
     </div>
 </nav>

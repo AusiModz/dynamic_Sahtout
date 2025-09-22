@@ -130,7 +130,7 @@ require_once '../includes/header.php';
     border-radius: 6px;
     border: 2px solid #ecf0f1;
     transition: all 0.3s ease;
-    cursor: url('/Sahtout/img/hover_wow.gif') 16 16, auto;
+    cursor: url('<?php echo SUBDIR ?>img/hover_wow.gif') 16 16, auto;
     box-sizing: border-box; /* Include padding in width */
 }
 
@@ -270,7 +270,7 @@ require_once '../includes/header.php';
                 <div class="step-text">
                     <h2><?php echo translate('step_1_title', 'Step 1: Create an Account'); ?></h2>
                     <p><?php echo translate('step_1_desc', 'Register a free account using our website:'); ?></p>
-                    <a class="btn" href="/sahtout/register"><?php echo translate('create_account', 'Create Account'); ?></a>
+                    <a class="btn" href="<?php echo SUBDIR ?>register"><?php echo translate('create_account', 'Create Account'); ?></a>
                 </div>
                 <img src="img/howtoplay/down_register.jpg" alt="<?php echo translate('create_account_alt', 'Create Account'); ?>">
             </div>

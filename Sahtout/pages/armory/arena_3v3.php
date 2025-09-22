@@ -11,7 +11,7 @@ function getFaction($race) {
 }
 
 function factionIconByName($faction) {
-    return "/Sahtout/img/accountimg/faction/" . strtolower($faction) . ".png";
+    return SUBDIR."img/accountimg/faction/" . strtolower($faction) . ".png";
 }
 
 // Query top 50 3v3 arena teams 
@@ -97,7 +97,7 @@ while ($row = $result->fetch_assoc()) {
         .arena-content tr.top3:hover {
             filter: brightness(1.2);
             transition: filter 0.2s ease-in-out;
-            cursor: url('/Sahtout/img/hover_wow.gif') 16 16, auto;
+            cursor: url('<?php echo SUBDIR ?>img/hover_wow.gif') 16 16, auto;
         }
 
         /* Scope nav-container override to arena-nav-wrapper */
@@ -142,7 +142,7 @@ while ($row = $result->fetch_assoc()) {
                             foreach ($teams as $team) {
                                 $rowClass = ($rank <= 3 && $teamCount >= 3) ? 'top3' : '';
                                 $faction = getFaction($team['race']);
-                                echo "<tr class='{$rowClass} tw-transition tw-duration-200' onclick=\"window.location='/sahtout/armory/arenateam?arenaTeamId={$team['arenaTeamId']}';\">
+                                echo "<tr class='{$rowClass} tw-transition tw-duration-200' onclick=\"window.location='".SUBDIR."armory/arenateam?arenaTeamId={$team['arenaTeamId']}';\">
                                     <td class='tw-py-3 tw-px-6'>{$rank}</td>
                                     <td class='tw-py-3 tw-px-6'>" . htmlspecialchars($team['team_name']) . "</td>
                                     <td class='tw-py-3 tw-px-6'>

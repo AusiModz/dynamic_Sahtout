@@ -11,7 +11,7 @@ function getFaction($race) {
 }
 
 function factionIconByName($faction) {
-    return "/Sahtout/img/accountimg/faction/" . strtolower($faction) . ".png";
+    return SUBDIR."img/accountimg/faction/" . strtolower($faction) . ".png";
 }
 
 function raceIcon($race, $gender) {
@@ -24,7 +24,7 @@ function raceIcon($race, $gender) {
         29 => 'voidelf'
     ];
     $raceName = isset($raceMap[$race]) ? $raceMap[$race] : 'unknown';
-    return "/Sahtout/img/accountimg/race/{$genderFolder}/{$raceName}.png";
+    return SUBDIR."img/accountimg/race/{$genderFolder}/{$raceName}.png";
 }
 
 function classIcon($class) {
@@ -34,7 +34,7 @@ function classIcon($class) {
         9 => 'warlock', 10 => 'monk', 11 => 'druid', 12 => 'demonhunter'
     ];
     $className = isset($classMap[$class]) ? $classMap[$class] : 'unknown';
-    return "/Sahtout/img/accountimg/class/{$className}.webp";
+    return SUBDIR."img/accountimg/class/{$className}.webp";
 }
 
 function getTeamTypeName($type) {
@@ -250,7 +250,7 @@ $orderedMembers = array_merge($orderedMembers, $members);
                 </div>
             <?php else: ?>
                 <h1 class="team-header tw-text-[2rem] sm:tw-text-[2.5rem] tw-font-bold tw-text-center tw-text-gold-300 tw-mb-6 tw-p-2 sm:tw-p-4 tw-rounded-xl tw-max-w-6xl tw-mx-auto">
-                    <img src="/Sahtout/img/armory/arena.webp" alt="Arena Team" title="Arena Team" class="arena-icon inline-block">
+                    <img src="<?php echo SUBDIR ?>img/armory/arena.webp" alt="Arena Team" title="Arena Team" class="arena-icon inline-block">
                     <?php echo htmlspecialchars($team['team_name']); ?> - <?php echo getTeamTypeName($team['type']); ?> <?php echo translate('arenateam_suffix', 'Arena Team'); ?>
                 </h1>
 
@@ -318,10 +318,10 @@ $orderedMembers = array_merge($orderedMembers, $members);
                             <?php else: ?>
                                 <?php foreach ($orderedMembers as $member): ?>
                                     <?php $faction = getFaction($member['race']); ?>
-                                    <tr class="<?php echo $member['guid'] == $team['captainGuid'] ? 'captain-row' : ''; ?> tw-transition tw-duration-200" onclick="window.location='/sahtout/pages/character.php?guid=<?php echo $member['guid']; ?>';">
+                                    <tr class="<?php echo $member['guid'] == $team['captainGuid'] ? 'captain-row' : ''; ?> tw-transition tw-duration-200" onclick="window.location='<?php echo SUBDIR ?>pages/character.php?guid=<?php echo $member['guid']; ?>';">
                                         <td class="tw-py-2 tw-px-4 sm:tw-py-3 sm:tw-px-6">
                                             <?php if ($member['guid'] == $team['captainGuid']): ?>
-                                                <img src="/Sahtout/img/armory/leader.png" alt="Team Captain" title="Team Captain" class="leader-icon inline-block">
+                                                <img src="<?php echo SUBDIR ?>img/armory/leader.png" alt="Team Captain" title="Team Captain" class="leader-icon inline-block">
                                             <?php endif; ?>
                                             <?php echo htmlspecialchars($member['name']); ?>
                                         </td>

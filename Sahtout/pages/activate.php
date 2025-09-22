@@ -51,7 +51,7 @@ if (!$token) {
                             // Send confirmation email
                             sendActivationConfirmationEmail($account['username'], $account['email']);
                             $success = translate('success_account_activated', 'Your account has been activated! You will be redirected to the login page shortly.');
-                            header("Refresh: 3; url=/sahtout/login");
+                            header("Refresh: 3; url=".SUBDIR."login");
                         } else {
                             $errors[] = translate('error_delete_failed', 'Failed to delete pending account: ') . $site_db->error;
                         }
@@ -76,7 +76,7 @@ function sendActivationConfirmationEmail($username, $email) {
         $mail->addAddress($email, $username);
         $mail->AddEmbeddedImage('logo.png', 'logo_cid');
         $mail->Subject = translate('email_subject', 'Account Activation Confirmation');
-        $login_link = $protocol . $_SERVER['HTTP_HOST'] . "/sahtout/login";
+        $login_link = $protocol . $_SERVER['HTTP_HOST'] . SUBDIR . "login";
         $mail->Body = "<h2>" . str_replace('{username}', htmlspecialchars($username), translate('email_greeting', 'Welcome, {username}!')) . "</h2>
             <img src='cid:logo_cid' alt='Sahtout logo'>
             <p>" . translate('email_success', 'Your account has been successfully activated.') . "</p>
@@ -106,7 +106,7 @@ require_once '../includes/header.php';
     <title><?php echo translate('page_title', 'Activate Account'); ?></title>
     <style>
         body {
-            background: url('/sahtout/img/backgrounds/bg-register.jpg') no-repeat center center fixed;
+            background: url('<?php echo SUBDIR ?>img/backgrounds/bg-register.jpg') no-repeat center center fixed;
             background-size: cover;
             color: #fff;
             margin: 0;
@@ -147,7 +147,7 @@ require_once '../includes/header.php';
             <?php elseif ($success): ?>
                 <div class="register-form">
                     <p class="success"><?php echo htmlspecialchars($success); ?></p>
-                    <p class="login-link-container"><a href="/sahtout/login"><?php echo translate('login_link', 'Click here to login'); ?></a></p>
+                    <p class="login-link-container"><a href="<?php echo SUBDIR ?>login"><?php echo translate('login_link', 'Click here to login'); ?></a></p>
                 </div>
             <?php endif; ?>
         </section>
